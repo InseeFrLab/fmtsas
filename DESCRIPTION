@@ -1,0 +1,22 @@
+Package: fmtsas
+Type: Package
+Title: Import SAS Formats
+Version: 0.0.0.9000
+Imports: stringr
+Suggests: testthat
+Authors@R:
+    person(
+      "Pierre-Yves", "Berrard",
+      email = "pierre-yves.berrard@insee.fr",
+      role = c("aut", "cre")
+    )
+Description: Importe dans R les données servant à créer un format SAS (table
+    ou programme). L'objet créé par l'import est une liste de vecteurs qui
+    pourra servir à faire des conversions. Le package ne gère pour l'instant que
+    des formats caractères comportant des associations de type "une valeur =
+    un libellé".
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
