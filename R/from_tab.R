@@ -1,3 +1,8 @@
+# ..............................................................................
+# Specifications
+# https://documentation.sas.com/?docsetId=proc&docsetTarget=n1e19y6lrektafn1kj6nbvhus59w.htm&docsetVersion=9.4
+# ..............................................................................
+
 #' Convertit une table pour format SAS
 #'
 #' Convertit les données utilisées pour une proc format (option CNTLIN=) en une
@@ -53,6 +58,9 @@
 #' donnees
 
 from_tab <- function(sas_data) {
+
+  # TODO :
+  # [ ] other/HLO (voir specif)
 
   stopifnot(is.data.frame(sas_data))
 
