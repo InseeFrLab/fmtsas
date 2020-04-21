@@ -79,7 +79,7 @@ conv <- from_pgm(test_pgm)
 donnees <-
   data.frame(
     ACT_CODE = c("B", "C", "I", "W", "H"),
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
   )
 
 # pour remplacer les codes par les libelles (pour ACT_CODE)

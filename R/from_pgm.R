@@ -173,7 +173,7 @@ value_to_vect <- function(value_txt) {
 #' donnees <-
 #'   data.frame(
 #'     ACT_CODE = c("B", "C", "I", "W", "H"),
-#'     stringsAsFactors = FALSE
+#'     stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
 #'   )
 #'
 #' # pour remplacer les codes par les libelles (pour ACT_CODE)

@@ -52,7 +52,7 @@ conv <- from_tab(format_data)
 donnees <-
   data.frame(
     VAR1_CODE = c("1", "2", "3", "1", "Z"),
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
   )
 
 # pour remplacer les codes par les libelles (pour VAR1)
