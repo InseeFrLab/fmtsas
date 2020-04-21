@@ -36,9 +36,7 @@
 #'     FMTNAME = c("v1fmt", "v1fmt", "v1fmt", "v2fmt", "v2fmt"),
 #'     TYPE    = c(    "C",     "C",     "C",     "C",     "C"),
 #'     START   = c(    "1",     "2",     "3",     "A",     "B"),
-#'     END     = c(    "1",     "2",     "3",     "A",     "B"),
-#'     LABEL   = c("Lib 1", "Lib23", "Lib23", "Lib A", "Lib B"),
-#'     stringsAsFactors = FALSE
+#'     LABEL   = c("Lib 1", "Lib23", "Lib23", "Lib A", "Lib B")
 #'   )
 #'
 #' conv <- from_tab(format_data)
@@ -63,6 +61,10 @@ from_tab <- function(sas_data) {
   # [ ] other/HLO (voir specif)
 
   stopifnot(is.data.frame(sas_data))
+
+  # transforme colonne facteurs en caractere
+  fct <- vapply(sas_data, is.factor, TRUE)
+  sas_data[fct] <- lapply(sas_data[fct], as.character)
 
   # noms en majuscule pour eviter tout probleme de casse
   names(sas_data) <- toupper(names(sas_data))
