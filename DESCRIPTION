@@ -13,8 +13,7 @@ Authors@R:
 Description: Importe dans R les données servant à créer un format SAS (table
     ou programme). L'objet créé par l'import est une liste de vecteurs qui
     pourra servir à faire des conversions. Le package ne gère pour l'instant que
-    des formats caractères comportant des associations de type "une valeur =
-    un libellé".
+    des formats caractères comportant un nombre défini de modalités.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
