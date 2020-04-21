@@ -1,0 +1,34 @@
+image: git.stable.innovation.insee.eu:50000/innovation/rstudio
+
+stages:
+  - check
+  - deploy
+
+pkg_check:
+  stage: check
+  script:
+    - R -e 'devtools::check(check_dir = ".",
+                            error_on  = "error",
+                            document  = FALSE,
+                            manual    = TRUE)'
+  artifacts:
+    paths:
+      - "${CI_PROJECT_NAME}_*.tar.gz"
+      - "${CI_PROJECT_NAME}.Rcheck/${CI_PROJECT_NAME}-manual.pdf"
+
+code_coverage:
+  stage: check
+  script:
+    - R -e 'covr::package_coverage()' # /fmtsas Coverage: (\d+.\d+%)/
+  only:
+    - master
+
+pages:
+  stage: deploy
+  script:
+    - Rscript -e 'pkgdown::build_site()'
+  artifacts:
+    paths:
+      - public
+  only:
+    - master

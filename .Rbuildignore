@@ -3,3 +3,5 @@
 ^README\.Rmd$
 ^NEWS\.html$
 ^NEWS\.rmd$
+^_pkgdown\.yml$
+^.gitlab-ci\.yml$

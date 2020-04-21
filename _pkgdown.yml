@@ -1,0 +1,10 @@
+destination: public
+
+development:
+  mode: auto
+
+navbar:
+  right:
+   - text: Contribuer
+     href: https://git.stable.innovation.insee.eu/xkfzv9/fmtsas
+     icon: fa-gitlab
