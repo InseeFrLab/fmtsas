@@ -34,10 +34,12 @@ couple_regex <- '(?:"[^"]*"\\s*[,-]\\s*)*"[^"]*"\\s*=\\s*"[^"]*"'
 rm_sas_comments <- function(sas_pgm) {
 
   # type /* ... */
-  gsub('/\\*.+?\\*/', '', sas_pgm) # (lazy)
+  sas_pgm <- gsub("/\\*.+?\\*/", "", sas_pgm) # (+? pour laziness)
 
   # type * ... ;
-  # TODO...
+  gsub("\\*[^;]+;", "", sas_pgm)
+  # TODO
+  #  [ ] pb si * ou ; dans chaine de caracteres exemple '*value "a;b"="x";'
 
 }
 
