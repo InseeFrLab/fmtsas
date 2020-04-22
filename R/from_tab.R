@@ -29,6 +29,8 @@
 #'
 #' @export
 #'
+#' @seealso [from_pgm] pour importer les formats contenus dans un programme SAS.
+#'
 #' @examples
 #' # donnees en entree (provenant d'une table SAS)
 #' format_data <-

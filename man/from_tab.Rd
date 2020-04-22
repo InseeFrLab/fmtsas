@@ -60,3 +60,6 @@ donnees$VAR1_LIB <- conv$v1fmt[donnees$VAR1_CODE]
 
 donnees
 }
+\seealso{
+\link{from_pgm} pour importer les formats contenus dans un programme SAS.
+}

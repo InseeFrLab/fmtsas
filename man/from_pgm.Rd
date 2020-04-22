@@ -87,3 +87,6 @@ donnees$ACT_LIB <- conv$a13_[donnees$ACT_CODE]
 
 donnees
 }
+\seealso{
+\link{from_tab} pour importer les formats contenus dans une table SAS.
+}

@@ -160,6 +160,8 @@ value_to_vect <- function(value_txt) {
 #'
 #' @export
 #'
+#' @seealso [from_tab] pour importer les formats contenus dans une table SAS.
+#'
 #' @examples
 #' test_pgm <- readLines(
 #'   system.file("extdata", "pgm_format_test.sas", package = "fmtsas")
