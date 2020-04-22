@@ -29,7 +29,8 @@ couple_regex <- '(?:"[^"]*"\\s*[,-]\\s*)*"[^"]*"\\s*=\\s*"[^"]*"'
 #
 # @param sas_pgm programme sas, vecteur de caractères de longueur 1.
 #
-# Gère pour l'instant les commentaires de type `/* ... */` et pas `* ... ;`.
+# Gère pour l'instant les commentaires de type `/* ... */` (correctement) et
+# `* ... ;` (mal).
 
 rm_sas_comments <- function(sas_pgm) {
 
@@ -75,9 +76,6 @@ reverse_simple_double_quote <- function(sas_pgm) {
 # @return Un vecteur de type `c("1" = "x", "2" = "x", "3" = "y")`.
 
 value_to_vect <- function(value_txt) {
-
-  # TODO
-  # [ ] other = "?"
 
   # extract equivalences par regex (detecte plusieurs valeurs à gauche)
   equiv <- unlist(
