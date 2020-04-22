@@ -3,7 +3,7 @@
 
 <!-- badges: start -->
 [![Project Status: Work in progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![pipeline status](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://git.stable.innovation.insee.eu/xkfzv9/sine/pipelines)
+[![pipeline status](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/pipelines)
 [![coverage report](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/coverage.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/commits/master)
 <!-- badges: end -->
 
@@ -16,8 +16,8 @@ Pour cela, il construit une liste de vecteurs, à partir de tables SAS ou
 de programmes SAS. Cette liste pourra ensuite être utilisée pour
 effectuer des conversions ou agrégations.
 
-Le package ne gère pour l’instant que des formats caractères comportant
-un nombre défini de modalités.
+Le package ne gère (pour l’instant) que des formats caractères
+comportant un nombre défini de modalités.
 
 ## Installation
 
@@ -64,15 +64,21 @@ conv_t
 #> "Homme" "Femme"
 ```
 
+[Documentation détaillée de la
+fonction](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/from_pgm.html).
+<!-- lien en dur, trouver un moyen de rendre cela portable -->
+
 ### Depuis un programme : `from_pgm`
 
 En entrée un programme SAS contenant une ou plusieurs `proc format` avec
-`value`(s).
+`value(s)`.
 
 ``` r
 test_pgm <-
   'PROC FORMAT;
      VALUE $ sexe "1"="Homme" "2"="Femme" ;
+     value vnum
+       0-99 = "petit" 100-high = "grand" ; 
      value $rega /* (geographie) */
        "01", "02", "03", "04", "05" = "Outre-mer"
        "11", "24", "27", "28", "32",
@@ -81,6 +87,9 @@ test_pgm <-
    RUN;'
 
 conv_p <- from_pgm(test_pgm)
+#> Warning in from_pgm(test_pgm): 
+#> Format(s) numerique(s) ignore(s) :
+#>   vnum
 
 conv_p
 #> $sexe
@@ -96,13 +105,17 @@ conv_p
 #> "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole"
 ```
 
+[Documentation détaillée de la
+fonction](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/from_pgm.html).
+<!-- lien en dur, trouver un moyen de rendre cela portable -->
+
 ## Utilisation
 
-La liste de vecteurs nommés que retournent les deux fonctions peut
-s’utiliser de la manière suivante :
+La liste de vecteurs nommés que retournent les deux fonctions peuvent
+être utilisés pour convertir des variables caractères d’un data.frame.
 
 Par exemple, si l’on a un jeu de données avec des codes pour lesquels on
-souhaite avoir une correspondance en clair.
+souhaite avoir une correspondance en clair et/ou une agrégation.
 
 ``` r
 donnees <-
@@ -134,5 +147,6 @@ Package en cours de développement. [Contribuez
 \!](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas)
 
   - signaler des bugs ou des cas où le package ne fonctionne pas
-    correctement
+    correctement (de préference
+    [ici](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues))
   - proposer une amélioration du code
