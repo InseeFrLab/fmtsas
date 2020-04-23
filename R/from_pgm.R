@@ -48,10 +48,10 @@ rm_sas_comments <- function(sas_pgm) {
 #
 # @param sas_pgm programme sas, vecteur de caractères de longueur 1.
 
-reverse_simple_double_quote <- function(sas_pgm) {
+switch_quote <- function(sas_pgm) {
   # intervertit guillemets simples et doubles
 
-  temp_car <- "^~^" # peu de chances d'apparaitre dans pgm sas
+  temp_car <- "!~!" # peu de chance d'apparaitre dans pgm sas
   res <- gsub("\"", temp_car, sas_pgm)
   res <- gsub("'", "\"", res)
   gsub(temp_car, "'", res)
@@ -196,7 +196,7 @@ from_pgm <- function(sas_pgm,
 
   # intervertit simples et doubles guillemets si besoin
   if (quote == "simple") {
-    sas_pgm <- reverse_simple_double_quote(sas_pgm)
+    sas_pgm <- switch_quote(sas_pgm)
   }
 
   # remplace modalite speciale `other` par valeur definie par utilisateur
