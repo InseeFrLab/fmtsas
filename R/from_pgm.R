@@ -132,12 +132,12 @@ value_to_vect <- function(value_txt) {
 #'
 #' Il est possible de choisir le type de guillemets (double ou simple) entourant
 #' les valeurs. Un programme contenant un mélange de guillemets simples et
-#' doubles ne fonctionnera pas.
+#' doubles ne détectera qu'un type et pas l'autre.
 #'
 #' Bien qu'elle ne puisse pas être utilisée directement pour faire des
-#' conversions (nombre de modalités indéfini), la modalité SAS par défaut
-#' `other` est aussi sauvegardée dans le résultat de fonction. Le nom associé
-#' est par défaut `"."`. Il peut-être modifié.
+#' conversions (nombre de modalités indéfini), la modalité SAS `other` (valeur
+#' par défaut) est aussi sauvegardée dans le résultat de fonction. Le nom
+#' associé est par défaut `"."`. Il peut-être modifié.
 #'
 #' @param sas_pgm un programme SAS sous la forme d'un vecteur de chaînes de
 #'   caractères.
@@ -147,7 +147,7 @@ value_to_vect <- function(value_txt) {
 #'   décrire une chaîne de caractère. La fonction suppose que des guillemets
 #'   doubles sont utilisés ("). Dans le cas contraire ('), spécifier
 #'   `quote = "simple"`.
-#' @param source conserver le code SAS dans un attribut `"source"` du vecteur
+#' @param source conserver le code SAS dans un attribut `"source"` de l'objet
 #'   en sortie.
 #'
 #' @return Une liste contenant autant d'éléments que de formats si les données

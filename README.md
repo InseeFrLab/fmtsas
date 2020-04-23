@@ -65,7 +65,7 @@ conv_t
 ```
 
 [Documentation détaillée de la
-fonction](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/from_pgm.html).
+fonction](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/from_tab.html).
 <!-- lien en dur, trouver un moyen de rendre cela portable -->
 
 ### Depuis un programme : `from_pgm`

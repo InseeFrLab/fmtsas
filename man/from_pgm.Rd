@@ -19,7 +19,7 @@ décrire une chaîne de caractère. La fonction suppose que des guillemets
 doubles sont utilisés ("). Dans le cas contraire ('), spécifier
 \code{quote = "simple"}.}
 
-\item{source}{conserver le code SAS dans un attribut \code{"source"} du vecteur
+\item{source}{conserver le code SAS dans un attribut \code{"source"} de l'objet
 en sortie.}
 }
 \value{
@@ -59,12 +59,12 @@ ignorés.
 
 Il est possible de choisir le type de guillemets (double ou simple) entourant
 les valeurs. Un programme contenant un mélange de guillemets simples et
-doubles ne fonctionnera pas.
+doubles ne détectera qu'un type et pas l'autre.
 
 Bien qu'elle ne puisse pas être utilisée directement pour faire des
-conversions (nombre de modalités indéfini), la modalité SAS par défaut
-\code{other} est aussi sauvegardée dans le résultat de fonction. Le nom associé
-est par défaut \code{"."}. Il peut-être modifié.
+conversions (nombre de modalités indéfini), la modalité SAS \code{other} (valeur
+par défaut) est aussi sauvegardée dans le résultat de fonction. Le nom
+associé est par défaut \code{"."}. Il peut-être modifié.
 }
 \examples{
 test_pgm <- readLines(
