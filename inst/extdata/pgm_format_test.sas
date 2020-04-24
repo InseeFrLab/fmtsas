@@ -41,3 +41,9 @@
 run ;
 
 PROC FORMAT;VALUE $ sexe  "1"="Homme"    "2"="Femme" ;RUN;
+
+data t1 ;
+  set t2 ;
+  GEO2 = put(REG2016, $reg.) ;
+  A13 = put(A21, $a13.) ;
+run ;

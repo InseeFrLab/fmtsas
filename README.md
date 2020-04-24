@@ -131,15 +131,40 @@ On utilise les listes générées par le package :
 
 ``` r
 donnees$SEXE_LIB <- conv_t$sexe[donnees$SEXE]
-donnees$REGA <- conv_p$rega[donnees$REG]
+donnees$REG2 <- conv_p$rega[donnees$REG]
 
 donnees
-#>    ID SEXE REG SEXE_LIB      REGA
+#>    ID SEXE REG SEXE_LIB      REG2
 #> 1 001    1  04    Homme Outre-mer
 #> 2 002    2  11    Femme Métropole
 #> 3 003    1  24    Homme Métropole
 #> 4 004    2  27    Femme Métropole
 ```
+
+Le package offre également la possibilité de rechercher dans un
+programme SAS les lignes qui créent des variables à partir de formats
+(instructions de la forme `"NEW = put(OLD, $var.);"`) pour générer le
+code R corrspondant :
+
+``` r
+pgm_sas <-
+  "data t2 ; set t1 ;
+     SEXE_LIB = put(SEXE, $sexe.) ;
+     REG2 = put(REG, $rega.) ;
+   run ;"
+
+convert_put(pgm_sas, fmt_list = "conv_p", style = "dplyr")
+#> mutate(
+#>   SEXE_LIB = conv_p$sexe[SEXE],
+#>   REG2 = conv_p$rega[REG]
+#> )
+convert_put(pgm_sas, fmt_list = "conv_p", style = "base")
+#> <donnees>$SEXE_LIB <- conv_p$sexe[<donnees>$SEXE]
+#> <donnees>$REG2 <- conv_p$rega[<donnees>$REG]
+```
+
+Il ne reste plus qu’à copier ces instructions dans un programme R (après
+quelques éventuels ajustements).
 
 ## Amélioration
 
