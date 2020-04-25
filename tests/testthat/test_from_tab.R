@@ -1,3 +1,5 @@
+context("from_tab")
+
 test_that("example", {
 
   test_tab <-
@@ -60,4 +62,3 @@ test_that("formats non caractere", {
   )
 
 })
-
