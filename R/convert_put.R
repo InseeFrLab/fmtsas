@@ -44,9 +44,9 @@ stylise <- function(x, fmt_list, style) {
 
 }
 
-#' Conversion de code SAS (put) en code R
+#' Convertit du code SAS (put) en code R
 #'
-#' Convertit les instructions de la forme `"NEW = put(OLD, $var.);"` d'un
+#' Convertit les instructions de la forme `NEW = put(OLD, $var.);` d'un
 #' programme SAS en leur équivalent en R.
 #'
 #' La fonction recherche le motif ci-dessus quel que soit l'endroit où il
@@ -57,7 +57,7 @@ stylise <- function(x, fmt_list, style) {
 #'
 #' - `"dplyr"` génère des instructions de type
 #'   `mutate(NEW = <fmt>$var[OLD], ...)`
-#' - `"base"` utilise une syntaxe standard
+#' - `"base"` génère une syntaxe standard
 #'   `<donnees>$NEW <- <fmt>$var[<donnees>$OLD]`
 #'
 #' @inheritParams from_pgm

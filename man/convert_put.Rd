@@ -2,7 +2,7 @@
 % Please edit documentation in R/convert_put.R
 \name{convert_put}
 \alias{convert_put}
-\title{Conversion de code SAS (put) en code R}
+\title{Convertit du code SAS (put) en code R}
 \usage{
 convert_put(sas_pgm, style = c("dplyr", "base"), fmt_list = "fmt",
   file = NULL, quiet = FALSE)
@@ -28,7 +28,7 @@ chaîne de caractères correspondante est de plus retournée sous forme de
 vecteur caractère (de manière invisible).
 }
 \description{
-Convertit les instructions de la forme \code{"NEW = put(OLD, $var.);"} d'un
+Convertit les instructions de la forme \code{NEW = put(OLD, $var.);} d'un
 programme SAS en leur équivalent en R.
 }
 \details{
@@ -40,7 +40,7 @@ Deux styles sont possibles pour le code R généré :
 \itemize{
 \item \code{"dplyr"} génère des instructions de type
 \code{mutate(NEW = <fmt>$var[OLD], ...)}
-\item \code{"base"} utilise une syntaxe standard
+\item \code{"base"} génère une syntaxe standard
 \code{<donnees>$NEW <- <fmt>$var[<donnees>$OLD]}
 }
 }

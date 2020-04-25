@@ -142,9 +142,9 @@ donnees
 ```
 
 Le package offre également la possibilité de rechercher dans un
-programme SAS les lignes qui créent des variables à partir de formats
-(instructions de la forme `"NEW = put(OLD, $var.);"`) pour générer le
-code R corrspondant :
+programme SAS les instructions qui créent des variables à partir de
+formats (de la forme `NEW = put(OLD, $var.);`), pour générer le code R
+correspondant :
 
 ``` r
 pgm_sas <-

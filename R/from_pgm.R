@@ -32,9 +32,8 @@ couple_regex <- '(?:"[^"]*"\\s*[,-]\\s*)*"[^"]*"\\s*=\\s*"[^"]*"'
 # Seules les deux bornes sont conservées dans le résultat (comme si tiret
 # remplacé par virgule).
 #
-# @param value_txt chaîne de texte de la forme `value $nomformat "1","2" = "x"
-#   "3" = "y"` (peut contenir espaces surnuméraires, sauts de lignes,
-#   commentaires...)
+# @param value_txt chaîne de texte de la forme `"1","2" = "x" "3" = "y"` (peut
+#   contenir espaces surnuméraires, sauts de lignes, mais pas de commentaires)
 #
 # @return Un vecteur de type `c("1" = "x", "2" = "x", "3" = "y")`.
 
@@ -127,7 +126,7 @@ value_to_vect <- function(value_txt) {
 #'
 #' @examples
 #' test_pgm <- readLines(
-#'   system.file("extdata", "pgm_format_test.sas", package = "fmtsas")
+#'   system.file("extdata/pgm_format_test.sas", package = "fmtsas")
 #' )
 #' cat(test_pgm, sep = "\n")
 #' conv <- from_pgm(test_pgm)
