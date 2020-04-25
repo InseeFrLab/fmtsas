@@ -1,15 +1,15 @@
-proc format ;
+ï»¿proc format ;
 
-  /* Noms régions */
+  /* Noms rÃ©gions */
   value $reg
   "01" = "Guadeloupe"
   "02" = "Martinique"
   "03" = "Guyane"
-  "04" = "La Réunion"
+  "04" = "La RÃ©union"
   "05" = "Mayotte"
-  "11" = "Île-de-France"
+  "11" = "ÃŽle-de-France"
   "24" = "Centre-Val de Loire"
-  "27" = "Bourgogne-Franche-Comté"
+  "27" = "Bourgogne-Franche-ComtÃ©"
   "28" = "Normandie"
   "32" = "Hauts-de-France"
   "44" = "Grand Est"
@@ -17,25 +17,25 @@ proc format ;
   "53" = "Bretagne"
   "75" = "Nouvelle Aquitaine"
   "76" = "Occitanie"
-  "84" = "Auvergne-Rhône-Alpes"
-  "93" = "Provence-Alpes-Côte d'Azur"
+  "84" = "Auvergne-RhÃ´ne-Alpes"
+  "93" = "Provence-Alpes-CÃ´te d'Azur"
   "94" = "Corse" ;
 
-  /* Secteur d'activité regroupé */
+  /* Secteur d'activitÃ© regroupÃ© */
   value $a13_
   "B", "C", "D", "E" = "Industrie" 
   "F"                = "Construction"
-  "G"                = "Commerce, réparation d'automobiles et de motocycles" 
+  "G"                = "Commerce, rÃ©paration d'automobiles et de motocycles" 
   "H"                = "Transports et entreposage"
-  "I"                = "Hébergement et restauration"
+  "I"                = "HÃ©bergement et restauration"
   "J"                = "Information et communication"
-  "K", "L"           = "Activités financières, d'assurance et immobilières"
-  "M"                = "Activités spécialisées, scientifiques et techniques"
-  "N"                = "Activités de services administratifs et de soutien"
+  "K", "L"           = "ActivitÃ©s financiÃ¨res, d'assurance et immobiliÃ¨res"
+  "M"                = "ActivitÃ©s spÃ©cialisÃ©es, scientifiques et techniques"
+  "N"                = "ActivitÃ©s de services administratifs et de soutien"
   "P"                = "Enseignement"
-  "Q"                = "Santé humaine et action sociale"
-  "R"                = "Arts, spectacles, activités récréatives"
-  "S"                = "Autres activités de services"
+  "Q"                = "SantÃ© humaine et action sociale"
+  "R"                = "Arts, spectacles, activitÃ©s rÃ©crÃ©atives"
+  "S"                = "Autres activitÃ©s de services"
   other              = "Hors champ" ;
 
 run ;
