@@ -87,10 +87,10 @@ stylise <- function(x, fmt_list, style) {
 #' convert_put(test_pgm, style = "base")
 
 convert_put <- function(sas_pgm,
-                         style = c("dplyr", "base"),
-                         fmt_list = "fmt",
-                         file = NULL,
-                         quiet = FALSE) {
+                        style = c("dplyr", "base"),
+                        fmt_list = "fmt",
+                        file = NULL,
+                        quiet = FALSE) {
 
   style <- match.arg(style)
 
