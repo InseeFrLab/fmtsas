@@ -17,9 +17,11 @@ extract_put <- function(sas_pgm) {
     stringr::str_match_all(
       sas_pgm,
       "(\\w+)=put\\((\\w+),\\$(\\w+)\\.\\);"
-    )[[1]][ , -1]
+    )[[1]]
 
+  res <- res[ , -1, drop = FALSE]
   colnames(res) <- c("new", "old", "fmt")
+
   res
 
 }
