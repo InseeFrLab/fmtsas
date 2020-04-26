@@ -67,7 +67,8 @@ associé est par défaut \code{"."}. Il peut-être modifié.
 }
 \examples{
 test_pgm <- readLines(
-  system.file("extdata/pgm_format_test.sas", package = "fmtsas")
+  system.file("extdata/pgm_format_test.sas", package = "fmtsas"),
+  encoding = "UTF-8"
 )
 cat(test_pgm, sep = "\n")
 conv <- from_pgm(test_pgm)
