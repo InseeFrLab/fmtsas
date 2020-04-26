@@ -4,8 +4,13 @@
 \alias{convert_put}
 \title{Convertit du code SAS (put) en code R}
 \usage{
-convert_put(sas_pgm, style = c("dplyr", "base"), fmt_list = "fmt",
-  file = NULL, quiet = FALSE)
+convert_put(
+  sas_pgm,
+  style = c("dplyr", "base"),
+  fmt_list = "fmt",
+  file = NULL,
+  quiet = FALSE
+)
 }
 \arguments{
 \item{sas_pgm}{un programme SAS sous la forme d'un vecteur de chaînes de
@@ -28,7 +33,7 @@ chaîne de caractères correspondante est de plus retournée sous forme de
 vecteur caractère (de manière invisible).
 }
 \description{
-Convertit les instructions de la forme \code{NEW = put(OLD, $var.);} d'un
+Convertit les instructions de la forme \verb{NEW = put(OLD, $var.);} d'un
 programme SAS en leur équivalent en R.
 }
 \details{
@@ -39,16 +44,16 @@ de lignes sont sont sans importance dans la détection des instructions.
 Deux styles sont possibles pour le code R généré :
 \itemize{
 \item \code{"dplyr"} génère des instructions de type
-\code{mutate(NEW = <fmt>$var[OLD], ...)}
+\verb{mutate(NEW = <fmt>$var[OLD], ...)}
 \item \code{"base"} génère une syntaxe standard
-\code{<donnees>$NEW <- <fmt>$var[<donnees>$OLD]}
+\verb{<donnees>$NEW <- <fmt>$var[<donnees>$OLD]}
 }
 }
 \examples{
 test_pgm <- readLines(
   system.file("extdata", "pgm_format_test.sas", package = "fmtsas")
 )
-cat(tail(test_pgm), sep = "\\n")
+cat(tail(test_pgm), sep = "\n")
 
 convert_put(test_pgm, style = "dplyr")
 convert_put(test_pgm, style = "base")

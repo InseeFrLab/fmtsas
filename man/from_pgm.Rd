@@ -4,8 +4,7 @@
 \alias{from_pgm}
 \title{Convertit un programme de formats SAS}
 \usage{
-from_pgm(sas_pgm, other = ".", quote = c("double", "simple"),
-  source = FALSE)
+from_pgm(sas_pgm, other = ".", quote = c("double", "simple"), source = FALSE)
 }
 \arguments{
 \item{sas_pgm}{un programme SAS sous la forme d'un vecteur de chaînes de
@@ -24,7 +23,7 @@ en sortie.}
 }
 \value{
 Une liste contenant autant d'éléments que de formats si les données
-avaient été générées par SAS via une \code{proc format}.
+avaient été générées par SAS via une \verb{proc format}.
 \itemize{
 \item les noms de la liste correspondent aux noms des formats (\code{value $...}) ;
 \item les éléments de la liste sont des vecteurs contenant les relations entre
@@ -34,7 +33,7 @@ valeurs initiales et valeurs converties.
 Voir les exemples pour l'utilisation de cette liste.
 }
 \description{
-Convertit les données contenues dans les \code{proc format} d'un programme SAS en
+Convertit les données contenues dans les \verb{proc format} d'un programme SAS en
 une liste de vecteurs qui pourra servir à effectuer des conversions.
 }
 \details{
@@ -47,13 +46,13 @@ caractères mais aussi d'un vecteur de plusieurs chaînes (typiquement le
 résultat de la lecture d'un fichier par \link{readLines}). Les commentaires,
 espaces et sauts de lignes surnuméraires sont autorisés. La casse du code SAS
 (majuscule ou minuscule) est sans importance. Le programme peut en outre
-contenir autre chose que des \code{proc format}.
+contenir autre chose que des \verb{proc format}.
 
 La fonction détecte plusieurs valeurs séparées par des virgules à gauche du
 signe \code{=}. En revanche, les intervalles de caractères (type \code{"A"-"Z"}) ne
 sont pas gérés car ils contiennent un nombre indéfini de modalités possibles.
 Les bornes de l'intervalle seront toutefois prises en compte (comme si
-\code{"A","Z"} était écrit). La syntaxe sans les guillements (\code{A-Z}) est aussi
+\verb{"A","Z"} était écrit). La syntaxe sans les guillements (\code{A-Z}) est aussi
 permise par SAS. Elle n'est \strong{pas prise en compte} et ces intervalles seront
 ignorés.
 
@@ -70,7 +69,7 @@ associé est par défaut \code{"."}. Il peut-être modifié.
 test_pgm <- readLines(
   system.file("extdata/pgm_format_test.sas", package = "fmtsas")
 )
-cat(test_pgm, sep = "\\n")
+cat(test_pgm, sep = "\n")
 conv <- from_pgm(test_pgm)
 
 # Utilisation :
