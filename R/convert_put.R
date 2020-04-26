@@ -88,7 +88,7 @@ stylise <- function(x, fmt_list, style) {
 
 convert_put <- function(sas_pgm,
                         style = c("dplyr", "base"),
-                        fmt_list = "fmt",
+                        fmt_list = "<fmt>",
                         file = NULL,
                         quiet = FALSE) {
 
@@ -98,14 +98,6 @@ convert_put <- function(sas_pgm,
 
   sas_pgm <- paste(sas_pgm, collapse = "\n") # collapse si vecteur longueur > 1
   sas_pgm <- rm_sas_comments(sas_pgm) # suppr comments
-
-  if (!quiet && !exists(fmt_list)) {
-    warning(
-      "le code genere ne pourra probablement pas s'executer en l'etat car `",
-      fmt_list, "` n'existe pas\n  ",
-      "(pour creer cette liste, utiliser `from_tab` ou `from_pgm`)"
-    )
-  }
 
   # donnees instructions put
 
@@ -148,6 +140,14 @@ convert_put <- function(sas_pgm,
         paste(res_vect, collapse = "\n")
       )
 
+  }
+
+  if (!quiet && !exists(fmt_list)) {
+    warning(
+      "le code genere ne pourra probablement pas s'executer en l'etat car `",
+      fmt_list, "` n'existe pas\n  ",
+      "(pour creer cette liste, utiliser `from_tab` ou `from_pgm`)"
+    )
   }
 
   # resultat

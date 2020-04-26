@@ -7,7 +7,7 @@
 convert_put(
   sas_pgm,
   style = c("dplyr", "base"),
-  fmt_list = "fmt",
+  fmt_list = "<fmt>",
   file = NULL,
   quiet = FALSE
 )
