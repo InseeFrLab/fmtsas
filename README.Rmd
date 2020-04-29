@@ -20,6 +20,8 @@ knitr::opts_chunk$set(
 library(fmtsas)
 ```
 
+![](https://git.stable.innovation.insee.eu/uploads/-/system/project/avatar/3136/visuel_fmt_sas.png?width=64)
+
 # fmtsas
 
 Le package R _fmtsas_ permet d'importer dans R des données servant à construire

@@ -2,11 +2,17 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
-[![Project Status: Work in progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![pipeline status](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/pipelines)
-[![coverage report](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/coverage.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/commits/master)
-[![CRAN status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
+[![Project Status: Work in
+progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![pipeline
+status](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/pipelines)
+[![coverage
+report](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/coverage.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/commits/master)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
 <!-- badges: end -->
+
+![](https://git.stable.innovation.insee.eu/uploads/-/system/project/avatar/3136/visuel_fmt_sas.png?width=64)
 
 # fmtsas
 
