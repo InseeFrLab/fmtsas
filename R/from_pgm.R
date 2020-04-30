@@ -19,7 +19,7 @@
 #
 # Insensible aux espace et sauts de lignes surnumeraires.
 
-couple_regex <- '(?:"[^"]*"\\s*[,-]\\s*)*"[^"]*"\\s*=\\s*"[^"]*"'
+couple_regex <- '(?:other|(?:"[^"]*"\\s*[,-]\\s*)*"[^"]*")\\s*=\\s*"[^"]*"'
 
 # Transforme un format (programme) en vecteur
 #
@@ -47,15 +47,8 @@ value_to_vect <- function(value_txt) {
     )
   )
 
-  mbs <- strsplit(equiv, "=")
+  mbs <- strsplit(equiv, "\\s*=\\s*")
   if (!length(mbs)) return(NULL) # probablement format numerique
-
-  ins <-
-    stringr::str_match_all(
-      lapply(mbs, function(x) x[1]),
-      '"([^"]+)"'
-    )
-  ins <- lapply(ins, function(x) x[ , 2])
 
   outs <-
     stringr::str_match(
@@ -63,8 +56,26 @@ value_to_vect <- function(value_txt) {
       '"([^"]+)"'
     )[ , 2]
 
+  ins <- vapply(mbs, function(x) x[1], character(1))
+
+  is_other <- ins == "other"
+  if (any(is_other)) {
+    other <- outs[is_other] # for attr(,"other")
+    ins  <- ins[!is_other] # rm other from ins
+    outs <- outs[!is_other] # rm other from outs
+  } else {
+    other <- NA_character_
+  }
+
+  ins <- stringr::str_match_all(ins, '"([^"]+)"')
+  ins <- lapply(ins, function(x) x[ , 2])
+
   rep_outs <- rep(outs, lengths(ins))
-  stats::setNames(rep_outs, unlist(ins))
+  res <- stats::setNames(rep_outs, unlist(ins))
+
+  # ajout attribut other
+  attr(res, "other") <- other
+  res
 
 }
 
@@ -96,15 +107,12 @@ value_to_vect <- function(value_txt) {
 #' les valeurs. Un programme contenant un mélange de guillemets simples et
 #' doubles ne détectera qu'un type et pas l'autre.
 #'
-#' Bien qu'elle ne puisse pas être utilisée directement pour faire des
-#' conversions (nombre de modalités indéfini), la modalité SAS `other` (valeur
-#' par défaut) est aussi sauvegardée dans le résultat de fonction. Le nom
-#' associé est par défaut `"."`. Il peut-être modifié.
+#' La modalité SAS `other` (valeur par défaut) est sauvegardée dans l'attribut
+#' "other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
+#' par défaut, l'attribut est quand même présent avec la valeur `NA`.
 #'
 #' @param sas_pgm un programme SAS sous la forme d'un vecteur de chaînes de
 #'   caractères.
-#' @param other nom associé à la modalité spéciale `other`, par défaut `"."`
-#'   (voir section 'Details').
 #' @param quote type de guillemet. SAS autorise deux types de guillemets pour
 #'   décrire une chaîne de caractère. La fonction suppose que des guillemets
 #'   doubles sont utilisés ("). Dans le cas contraire ('), spécifier
@@ -147,7 +155,6 @@ value_to_vect <- function(value_txt) {
 #' donnees
 
 from_pgm <- function(sas_pgm,
-                     other = ".",
                      quote = c("double", "simple"),
                      source = FALSE) {
 
@@ -161,14 +168,6 @@ from_pgm <- function(sas_pgm,
   if (quote == "simple") {
     sas_pgm <- switch_quote(sas_pgm)
   }
-
-  # remplace modalite speciale `other` par valeur definie par utilisateur
-  sas_pgm <-
-    stringr::str_replace_all(
-      sas_pgm,
-      'other(\\s*=\\s*"[^"]*")',
-      paste0('"', other, '"\\1')
-    )
 
   # suppr comments
   sas_pgm_nocom <- rm_sas_comments(sas_pgm)

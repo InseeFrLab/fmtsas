@@ -90,7 +90,8 @@ test_pgm <-
        "01", "02", "03", "04", "05" = "Outre-mer"
        "11", "24", "27", "28", "32",
        "44", "52", "53", "75", "76",
-       "84", "93", "94"             = "Métropole";
+       "84", "93", "94"             = "Métropole"
+       other                        = "ERREUR" ;
    RUN;'
 
 conv_p <- from_pgm(test_pgm)
@@ -102,6 +103,8 @@ conv_p
 #> $sexe
 #>       1       2 
 #> "Homme" "Femme" 
+#> attr(,"other")
+#> [1] NA
 #> 
 #> $rega
 #>          01          02          03          04          05          11 
@@ -109,7 +112,9 @@ conv_p
 #>          24          27          28          32          44          52 
 #> "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" 
 #>          53          75          76          84          93          94 
-#> "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole"
+#> "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" 
+#> attr(,"other")
+#> [1] "ERREUR"
 ```
 
 [Documentation détaillée de la

@@ -4,14 +4,11 @@
 \alias{from_pgm}
 \title{Convertit un programme de formats SAS}
 \usage{
-from_pgm(sas_pgm, other = ".", quote = c("double", "simple"), source = FALSE)
+from_pgm(sas_pgm, quote = c("double", "simple"), source = FALSE)
 }
 \arguments{
 \item{sas_pgm}{un programme SAS sous la forme d'un vecteur de chaînes de
 caractères.}
-
-\item{other}{nom associé à la modalité spéciale \code{other}, par défaut \code{"."}
-(voir section 'Details').}
 
 \item{quote}{type de guillemet. SAS autorise deux types de guillemets pour
 décrire une chaîne de caractère. La fonction suppose que des guillemets
@@ -60,10 +57,9 @@ Il est possible de choisir le type de guillemets (double ou simple) entourant
 les valeurs. Un programme contenant un mélange de guillemets simples et
 doubles ne détectera qu'un type et pas l'autre.
 
-Bien qu'elle ne puisse pas être utilisée directement pour faire des
-conversions (nombre de modalités indéfini), la modalité SAS \code{other} (valeur
-par défaut) est aussi sauvegardée dans le résultat de fonction. Le nom
-associé est par défaut \code{"."}. Il peut-être modifié.
+La modalité SAS \code{other} (valeur par défaut) est sauvegardée dans l'attribut
+"other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
+par défaut, l'attribut est quand même présent avec la valeur \code{NA}.
 }
 \examples{
 test_pgm <- readLines(
