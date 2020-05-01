@@ -3,3 +3,4 @@
 export(convert_put)
 export(from_pgm)
 export(from_tab)
+importFrom(stats,setNames)

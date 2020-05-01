@@ -33,6 +33,7 @@
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'
+#' @importFrom stats setNames
 #' @export
 #'
 #' @seealso [from_pgm] pour importer les formats contenus dans un programme SAS.
@@ -97,14 +98,14 @@ from_tab <- function(sas_data) {
   # other (HLO)
   fmtnames <- unique(sas_data_chr$FMTNAME)
   others <-
-    stats::setNames(
+    setNames(
       rep(NA_character_, length(fmtnames)),
       fmtnames
     )
   others_hlo <-
     with(
       sas_data_chr[sas_data_chr$HLO == "O", ],
-      stats::setNames(LABEL, FMTNAME)
+      setNames(LABEL, FMTNAME)
     )
   others[names(others_hlo)] <- others_hlo
 
@@ -113,7 +114,7 @@ from_tab <- function(sas_data) {
     with(
       sas_data_chr,
       tapply(
-        stats::setNames(as.vector(LABEL), START),
+        setNames(as.vector(LABEL), START),
         FMTNAME,
         function(x) list(x[!is.na(names(x))]) #(!is.na retire possibles `other`)
       )
@@ -121,7 +122,7 @@ from_tab <- function(sas_data) {
 
   # ajouts attributs other
   lapply(
-    stats::setNames(names(res), names(res)),
+    setNames(names(res), names(res)),
     function(nm) {
       attr(res[[nm]], "other") <- unname(others[nm])
       res[[nm]]

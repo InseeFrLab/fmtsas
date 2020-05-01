@@ -37,6 +37,8 @@ couple_regex <- '(?:other|(?:"[^"]*"\\s*[,-]\\s*)*"[^"]*")\\s*=\\s*"[^"]*"'
 #
 # @return Un vecteur de type `c("1" = "x", "2" = "x", "3" = "y")`.
 
+#' @importFrom stats setNames
+
 value_to_vect <- function(value_txt) {
 
   # extract equivalences par regex (detecte plusieurs valeurs à gauche)
@@ -71,7 +73,7 @@ value_to_vect <- function(value_txt) {
   ins <- lapply(ins, function(x) x[ , 2])
 
   rep_outs <- rep(outs, lengths(ins))
-  res <- stats::setNames(rep_outs, unlist(ins))
+  res <- setNames(rep_outs, unlist(ins))
 
   # ajout attribut other
   attr(res, "other") <- other
@@ -128,6 +130,7 @@ value_to_vect <- function(value_txt) {
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'
+#' @importFrom stats setNames
 #' @export
 #'
 #' @seealso [from_tab] pour importer les formats contenus dans une table SAS.
@@ -209,7 +212,7 @@ from_pgm <- function(sas_pgm,
     )
   }
 
-  res <- stats::setNames(assoc, fmtnames)
+  res <- setNames(assoc, fmtnames)
   if (source) attr(res, "source") <- orig
 
   res
