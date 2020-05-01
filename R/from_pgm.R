@@ -126,7 +126,8 @@ value_to_vect <- function(value_txt) {
 #'   avaient été générées par SAS via une `proc format`.
 #'   - les noms de la liste correspondent aux noms des formats (`value $...`) ;
 #'   - les éléments de la liste sont des vecteurs contenant les relations entre
-#'   valeurs initiales et valeurs converties.
+#'   valeurs initiales et valeurs converties ;
+#'   - chaque élément à un attribut `"other"` (éventuellement vide).
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'
