@@ -25,7 +25,7 @@ avaient été générées par SAS via une \verb{proc format}.
 \item les noms de la liste correspondent aux noms des formats (\code{value $...}) ;
 \item les éléments de la liste sont des vecteurs contenant les relations entre
 valeurs initiales et valeurs converties ;
-\item chaque élément à un attribut \code{"other"} (éventuellement vide).
+\item chaque élément a un attribut \code{"other"} (éventuellement vide).
 }
 
 Voir les exemples pour l'utilisation de cette liste.

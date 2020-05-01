@@ -29,7 +29,7 @@
 #'   - les noms de la liste correspondent aux noms des formats (`FMTNAME`) ;
 #'   - les éléments de la liste sont des vecteurs contenant les relations entre
 #'   valeurs initiales et valeurs converties ;
-#'   - chaque élément à un attribut `"other"` (éventuellement vide).
+#'   - chaque élément a un attribut `"other"` (éventuellement vide).
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'
