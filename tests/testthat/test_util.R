@@ -54,11 +54,29 @@ test_that("type `* ;`", {
     "options mprint ;"
   )
 
-  skip("`;` ou `*` entre guillemets")
+  expect_equal(
+    rm_sas_comments('*value "a*b"="x";'),
+    ""
+  )
+
+  expect_equal(
+    rm_sas_comments('*value "a*b"="x";options mprint ;'),
+    "options mprint ;"
+  )
+
+  skip("`;` ou `*` entre guillemets") ## a corriger
+
   expect_equal(
     rm_sas_comments('*value "a;b"="x";'),
     ""
   )
+
+  expect_equal(
+    rm_sas_comments('*value "a;b"="x";options mprint ;'),
+    "options mprint ;"
+  )
+
+
 
 })
 
