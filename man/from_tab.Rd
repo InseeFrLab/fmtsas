@@ -17,7 +17,8 @@ avaient été générées par une proc format.
 \itemize{
 \item les noms de la liste correspondent aux noms des formats (\code{FMTNAME}) ;
 \item les éléments de la liste sont des vecteurs contenant les relations entre
-valeurs initiales et valeurs converties.
+valeurs initiales et valeurs converties ;
+\item chaque élément à un attribut \code{"other"} (éventuellement vide).
 }
 
 Voir les exemples pour l'utilisation de cette liste.
@@ -33,6 +34,11 @@ SAS (par exemple avec le package \strong{haven}).
 Cette fonction ne gère pour l'instant que des formats caractère. De plus,
 s'il y a une colonne \code{END} dans la table en entrée, elle doit être égale à la
 colonne \code{START}.
+
+La modalité SAS \code{other} (valeur par défaut), présente dans la table si une
+colonne \code{HLO} existe et vaut \code{"0"} est sauvegardée dans l'attribut
+"other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
+par défaut, l'attribut est quand même présent avec la valeur \code{NA}.
 }
 \examples{
 # donnees en entree (provenant d'une table SAS)

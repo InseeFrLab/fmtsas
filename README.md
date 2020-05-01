@@ -53,10 +53,11 @@ servant dans une `proc format` avec l’option `CNTLIN=`.
 ``` r
 format_data <- 
   data.frame(
-    FMTNAME = c( "fmt1_", "fmt1_", "fmt1_",  "sexe",  "sexe"),
-    TYPE    = c(     "C",     "C",     "C",     "C",     "C"),
-    START   = c(     "A",     "B",     "C",     "1",     "2"),
-    LABEL   = c(     "A",    "BC",    "BC", "Homme", "Femme")
+    FMTNAME = c( "fmt1_", "fmt1_", "fmt1_", "fmt1_",  "sexe",  "sexe"),
+    TYPE    = c(     "C",     "C",     "C",     "C",     "C",     "C"),
+    START   = c(     "A",     "B",     "C",      NA,     "1",     "2"),
+    LABEL   = c(     "A",    "BC",    "BC", "ERROR", "Homme", "Femme"),
+    HLO     = c(      NA,      NA,      NA,     "O",      NA,      NA)
   )
 
 conv_t <- from_tab(format_data)
@@ -65,10 +66,14 @@ conv_t
 #> $fmt1_
 #>    A    B    C 
 #>  "A" "BC" "BC" 
+#> attr(,"other")
+#> [1] "ERROR"
 #> 
 #> $sexe
 #>       1       2 
-#> "Homme" "Femme"
+#> "Homme" "Femme" 
+#> attr(,"other")
+#> [1] NA
 ```
 
 [Documentation détaillée de la

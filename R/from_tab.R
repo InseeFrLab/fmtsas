@@ -15,6 +15,11 @@
 #' s'il y a une colonne `END` dans la table en entrée, elle doit être égale à la
 #' colonne `START`.
 #'
+#' La modalité SAS `other` (valeur par défaut), présente dans la table si une
+#' colonne `HLO` existe et vaut `"0"` est sauvegardée dans l'attribut
+#' "other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
+#' par défaut, l'attribut est quand même présent avec la valeur `NA`.
+#'
 #' @param sas_data un data.frame importé depuis une table SAS pour proc format.
 #'   Ce data.frame doit contenir a minima les colonnes `FMTNAME`, `START`,
 #'   `LABEL` et `TYPE` (majuscule ou minuscule).
@@ -23,7 +28,8 @@
 #'   avaient été générées par une proc format.
 #'   - les noms de la liste correspondent aux noms des formats (`FMTNAME`) ;
 #'   - les éléments de la liste sont des vecteurs contenant les relations entre
-#'   valeurs initiales et valeurs converties.
+#'   valeurs initiales et valeurs converties ;
+#'   - chaque élément à un attribut `"other"` (éventuellement vide).
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'
@@ -59,9 +65,6 @@
 
 from_tab <- function(sas_data) {
 
-  # TODO :
-  # [ ] other/HLO (voir specif)
-
   stopifnot(is.data.frame(sas_data))
 
   # transforme colonne facteurs en caractere
@@ -91,10 +94,38 @@ from_tab <- function(sas_data) {
     warning("formats hors type caractere (C) exclus")
   }
 
+  # other (HLO)
+  fmtnames <- unique(sas_data_chr$FMTNAME)
+  others <-
+    stats::setNames(
+      rep(NA_character_, length(fmtnames)),
+      fmtnames
+    )
+  others_hlo <-
+    with(
+      sas_data_chr[sas_data_chr$HLO == "O", ],
+      stats::setNames(LABEL, FMTNAME)
+    )
+  others[names(others_hlo)] <- others_hlo
+
   # creation liste
-  with(
-    sas_data_chr,
-    tapply(setNames(as.vector(LABEL), START), FMTNAME, list)
+  res <-
+    with(
+      sas_data_chr,
+      tapply(
+        stats::setNames(as.vector(LABEL), START),
+        FMTNAME,
+        function(x) list(x[!is.na(names(x))]) #(!is.na retire possibles `other`)
+      )
+    )
+
+  # ajouts attributs other
+  lapply(
+    stats::setNames(names(res), names(res)),
+    function(nm) {
+      attr(res[[nm]], "other") <- unname(others[nm])
+      res[[nm]]
+    }
   )
 
 }

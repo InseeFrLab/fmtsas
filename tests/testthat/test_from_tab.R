@@ -1,3 +1,6 @@
+# Test helper : vecteur avec attribut "other" (par défaut NA)
+fmtsas_chr <- function(x, other = NA_character_) structure(x, other = other)
+
 context("from_tab")
 
 test_that("example", {
@@ -14,8 +17,8 @@ test_that("example", {
   expect_equal(
     from_tab(test_tab),
     list(
-      v1fmt = c("1" = "Lib 1", "2" = "Lib23", "3" = "Lib23"),
-      v2fmt = c("A" = "Lib A", "B" = "Lib B")
+      v1fmt = fmtsas_chr(c("1" = "Lib 1", "2" = "Lib23", "3" = "Lib23")),
+      v2fmt = fmtsas_chr(c("A" = "Lib A", "B" = "Lib B"))
     )
   )
 
@@ -58,7 +61,29 @@ test_that("formats non caractere", {
   )
   expect_equal(
     res,
-    list(v1fmt = c("1" = "Lib 1"))
+    list(v1fmt = fmtsas_chr(c("1" = "Lib 1")))
+  )
+
+})
+
+test_that("other", {
+
+  test_tab <-
+    data.frame(
+      FMTNAME = c("v1fmt", "v1fmt", "v1fmt", "v2fmt", "v2fmt", "v2fmt"),
+      TYPE    = c(    "C",     "C",     "C",     "C",     "C",     "C"),
+      START   = c(    "1",     "2",     "3",     "A",     "B",      NA),
+      END     = c(    "1",     "2",     "3",     "A",     "B",      NA),
+      LABEL   = c("Lib 1", "Lib23", "Lib23", "Lib A", "Lib B", "ERROR"),
+      HLO     = c(     "",      NA,      NA,  "RIEN",      NA,     "O")
+    )
+
+  expect_equal(
+    from_tab(test_tab),
+    list(
+      v1fmt = fmtsas_chr(c("1" = "Lib 1", "2" = "Lib23", "3" = "Lib23")),
+      v2fmt = fmtsas_chr(c("A" = "Lib A", "B" = "Lib B"), other = "ERROR")
+    )
   )
 
 })
