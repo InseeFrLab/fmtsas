@@ -35,7 +35,7 @@ test_that("extract_put", {
 
 # :::stylise --------------------------------------------------------------
 
-context("::stylise")
+context(":::stylise")
 
 test_that("style = dplyr", {
 
