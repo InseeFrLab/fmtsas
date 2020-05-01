@@ -76,8 +76,13 @@ from_tab <- function(sas_data) {
   if (any(miss <- !needed %in% names(sas_data))) {
     stop("\nColonne(s) manquante(s) : ", paste(needed[miss], collapse = ", "))
   }
-  if ("END" %in% names(sas_data) && any(sas_data$START != sas_data$END)) {
-    stop("les colonnes START et END doivent etre egales")
+  if ("END" %in% names(sas_data)) {
+    start_diff_end <-
+      with(
+        sas_data,
+        any(START[!is.na(START)] != END[!is.na(START)])
+      )
+    if (start_diff_end) stop("les colonnes START et END doivent etre egales")
   }
 
   # exclut formats numériques
