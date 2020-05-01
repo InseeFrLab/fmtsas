@@ -180,7 +180,7 @@ from_pgm <- function(sas_pgm,
   values <-
     stringr::str_match_all(
       sas_pgm_nocom,
-      sprintf('(?i)value\\s+\\$\\s*(\\w+)\\s+((?:%s\\s*)+)', couple_regex)
+      sprintf('(?i)value\\s+\\$\\s*(\\w+)\\s+((?:%s\\s*)+);', couple_regex)
     )[[1]]
 
   if (!length(values)) {

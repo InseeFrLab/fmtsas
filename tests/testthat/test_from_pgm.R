@@ -163,7 +163,7 @@ test_that("quote", {
 
 test_that("other", {
 
-  test_pgm <- 'VALUE $sexe "1"="Homme" "2"="Femme" other = "?"'
+  test_pgm <- 'value $sexe "1"="Homme" "2"="Femme" other = "?" ;'
 
   expect_equal(
     from_pgm(test_pgm),
@@ -174,7 +174,7 @@ test_that("other", {
     from_pgm(
       paste(
         test_pgm,
-        'VALUE $sexe_ "1"="Homme" "2"="Femme" other = "Inconnu"' # [+]
+        'VALUE $sexe_ "1"="Homme" "2"="Femme" other = "Inconnu";' # [+]
       )
     ),
     list(
