@@ -45,7 +45,7 @@ value_to_vect <- function(value_txt) {
   equiv <- unlist(
     stringr::str_extract_all(
       value_txt,
-      sprintf("(%s)", couple_regex)
+      sprintf("(?i)(%s)", couple_regex)
     )
   )
 
@@ -60,7 +60,7 @@ value_to_vect <- function(value_txt) {
 
   ins <- vapply(mbs, function(x) x[1], character(1))
 
-  is_other <- ins == "other"
+  is_other <- tolower(ins) == "other"
   if (any(is_other)) {
     other <- outs[is_other] # for attr(,"other")
     ins  <- ins[!is_other] # rm other from ins

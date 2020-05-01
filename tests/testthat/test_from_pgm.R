@@ -174,7 +174,7 @@ test_that("other", {
     from_pgm(
       paste(
         test_pgm,
-        'VALUE $sexe_ "1"="Homme" "2"="Femme" other = "Inconnu";' # [+]
+        'VALUE $sexe_ "1"="Homme" "2"="Femme" OTHER="Inconnu";' # [+]
       )
     ),
     list(
