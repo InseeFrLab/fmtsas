@@ -102,11 +102,14 @@ from_tab <- function(sas_data) {
       rep(NA_character_, length(fmtnames)),
       fmtnames
     )
-  others_hlo <-
-    with(
-      sas_data_chr[sas_data_chr$HLO == "O", ],
-      setNames(LABEL, FMTNAME)
-    )
+  others_hlo <- character(0)
+  if (any(names(sas_data_chr) == "HLO")) {
+    others_hlo <-
+      with(
+        sas_data_chr[with(sas_data_chr, !is.na(HLO) & HLO == "O"), ],
+        setNames(LABEL, FMTNAME)
+      )
+  }
   others[names(others_hlo)] <- others_hlo
 
   # creation liste
