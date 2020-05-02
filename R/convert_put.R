@@ -31,17 +31,19 @@ extract_put <- function(sas_pgm) {
 # en une chaîne de type
 #    "<new> = <fmt_list>$<old>[<fmt>]" (sytle dplyr)
 
-stylise <- function(x, fmt_list, style) {
+stylise <- function(x, fmt_list, keep_na, style) {
+
+  keep_na_txt <- if (keep_na) ", keep_na = TRUE" else ""
 
   pattern <- switch(
     style,
-    "dplyr" = "%s = %s$%s[%s]",
-    "base"  = "<donnees>$%s <- %s$%s[<donnees>$%s]"
+    "dplyr" = "%s = %s$%s[%s%s]",
+    "base"  = "<donnees>$%s <- %s$%s[<donnees>$%s%s]"
   )
 
   sprintf(
     pattern,
-    x["new"], fmt_list, x["fmt"], x["old"]
+    x["new"], fmt_list, x["fmt"], x["old"], keep_na_txt
   )
 
 }
@@ -67,6 +69,8 @@ stylise <- function(x, fmt_list, style) {
 #'   section 'Details'.
 #' @param fmt_list nom de la liste créée auparavant par [from_tab] ou [from_pgm]
 #'   (sous forme de chaîne de caractères).
+#' @param keep_na pour sélectionner avec l'option `keep_na` (voir
+#'   [cet opérateur][extract.fmtsas_c]).
 #' @param file par défaut, le résultat est affiché dans la console. Spécifier
 #'   un nom de fichier pour une sauvegarde disque.
 #' @param quiet pour désactiver certains avertissements.
@@ -85,10 +89,13 @@ stylise <- function(x, fmt_list, style) {
 #'
 #' convert_put(test_pgm, style = "dplyr")
 #' convert_put(test_pgm, style = "base")
+#'
+#' convert_put(test_pgm, keep_na = TRUE)
 
 convert_put <- function(sas_pgm,
                         style = c("dplyr", "base"),
                         fmt_list = "<fmt>",
+                        keep_na = FALSE,
                         file = NULL,
                         quiet = FALSE) {
 
@@ -119,6 +126,7 @@ convert_put <- function(sas_pgm,
       MARGIN   = 1,
       FUN      = stylise,
       fmt_list = fmt_list,
+      keep_na  = keep_na,
       style    = style
     )
 

@@ -8,6 +8,7 @@ convert_put(
   sas_pgm,
   style = c("dplyr", "base"),
   fmt_list = "<fmt>",
+  keep_na = FALSE,
   file = NULL,
   quiet = FALSE
 )
@@ -21,6 +22,9 @@ section 'Details'.}
 
 \item{fmt_list}{nom de la liste créée auparavant par \link{from_tab} ou \link{from_pgm}
 (sous forme de chaîne de caractères).}
+
+\item{keep_na}{pour sélectionner avec l'option \code{keep_na} (voir
+\link[=extract.fmtsas_c]{cet opérateur}).}
 
 \item{file}{par défaut, le résultat est affiché dans la console. Spécifier
 un nom de fichier pour une sauvegarde disque.}
@@ -57,4 +61,6 @@ cat(tail(test_pgm), sep = "\n")
 
 convert_put(test_pgm, style = "dplyr")
 convert_put(test_pgm, style = "base")
+
+convert_put(test_pgm, keep_na = TRUE)
 }

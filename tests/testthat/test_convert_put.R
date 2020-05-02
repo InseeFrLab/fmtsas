@@ -42,19 +42,21 @@ test_that("style = dplyr", {
   expect_equal(
     stylise(
       c(new = "NEW", old = "OLD", fmt = "new_old"),
-      fmt_list = "fmt",
+      fmt_list = "conv",
+      keep_na = FALSE,
       style = "dplyr"
     ),
-    "NEW = fmt$new_old[OLD]"
+    "NEW = conv$new_old[OLD]"
   )
 
   expect_equal(
     stylise(
       c(new = "NEW", old = "OLD", fmt = "new_old"),
-      fmt_list = "conv", # [+]
+      fmt_list = "conv",
+      keep_na = TRUE,  # [+]
       style = "dplyr"
     ),
-    "NEW = conv$new_old[OLD]"
+    "NEW = conv$new_old[OLD, keep_na = TRUE]"
   )
 
 })
@@ -65,6 +67,7 @@ test_that("style = base", {
     stylise(
       c(new = "NEW", old = "OLD", fmt = "new_old"),
       fmt_list = "fmt",
+      keep_na = FALSE,
       style = "base"
     ),
     "<donnees>$NEW <- fmt$new_old[<donnees>$OLD]"
@@ -73,10 +76,11 @@ test_that("style = base", {
   expect_equal(
     stylise(
       c(new = "NEW", old = "OLD", fmt = "new_old"),
-      fmt_list = "conv", # [+]
+      fmt_list = "fmt",
+      keep_na = TRUE, # [+]
       style = "base"
     ),
-    "<donnees>$NEW <- conv$new_old[<donnees>$OLD]"
+    "<donnees>$NEW <- fmt$new_old[<donnees>$OLD, keep_na = TRUE]"
   )
 
 })
