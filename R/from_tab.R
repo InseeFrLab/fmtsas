@@ -16,7 +16,7 @@
 #' colonne `START`.
 #'
 #' La modalité SAS `other` (valeur par défaut), présente dans la table si une
-#' colonne `HLO` existe et vaut `"0"` est sauvegardée dans l'attribut
+#' colonne `HLO` existe et vaut `"O"`, est sauvegardée dans l'attribut
 #' "other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
 #' par défaut, l'attribut est quand même présent avec la valeur `NA`.
 #'

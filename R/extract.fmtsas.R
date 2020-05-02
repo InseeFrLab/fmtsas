@@ -5,7 +5,7 @@
 #'
 #' L'opérateur `[]` pour un objet "fmtsas_c" s'utilise de la même façon que le
 #' `[]` habituel. La différence est qu'il remplace les valeurs inconnues par la
-#' chaîne définie' dans l'attribut `"other"`.
+#' valeur définie dans l'attribut `"other"`.
 #'
 #' Autres particularités :
 #'
@@ -15,7 +15,7 @@
 #' - le résultat est dépourvu de noms d'éléments.
 #'
 #' @param x objet sur lequel on veut procéder à une extraction/conversion.
-#' @param i noms de éléments à sélectionner.
+#' @param i noms des éléments à extraire ou convertir.
 #' @param keep_na conserver les valeurs manquantes telles quelles. Par défaut
 #'   `FALSE` : les `NA` seront remplacés par la valeur `other` (comme dans SAS).
 #'

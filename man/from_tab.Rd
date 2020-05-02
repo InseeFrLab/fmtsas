@@ -39,7 +39,7 @@ s'il y a une colonne \code{END} dans la table en entrée, elle doit être égale
 colonne \code{START}.
 
 La modalité SAS \code{other} (valeur par défaut), présente dans la table si une
-colonne \code{HLO} existe et vaut \code{"0"} est sauvegardée dans l'attribut
+colonne \code{HLO} existe et vaut \code{"O"}, est sauvegardée dans l'attribut
 "other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
 par défaut, l'attribut est quand même présent avec la valeur \code{NA}.
 }

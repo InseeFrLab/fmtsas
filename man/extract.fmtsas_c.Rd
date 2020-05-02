@@ -10,7 +10,7 @@
 \arguments{
 \item{x}{objet sur lequel on veut procéder à une extraction/conversion.}
 
-\item{i}{noms de éléments à sélectionner.}
+\item{i}{noms des éléments à extraire ou convertir.}
 
 \item{keep_na}{conserver les valeurs manquantes telles quelles. Par défaut
 \code{FALSE} : les \code{NA} seront remplacés par la valeur \code{other} (comme dans SAS).}
@@ -26,7 +26,7 @@ par défaut.
 \details{
 L'opérateur \verb{[]} pour un objet "fmtsas_c" s'utilise de la même façon que le
 \verb{[]} habituel. La différence est qu'il remplace les valeurs inconnues par la
-chaîne définie' dans l'attribut \code{"other"}.
+valeur définie dans l'attribut \code{"other"}.
 
 Autres particularités :
 \itemize{
