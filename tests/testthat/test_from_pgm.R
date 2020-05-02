@@ -1,6 +1,3 @@
-# Test helper : vecteur avec attribut "other" (par défaut NA)
-fmtsas_chr <- function(x, other = NA_character_) structure(x, other = other)
-
 # :::value_to_vect --------------------------------------------------------
 
 context(":::value_to_vect")
@@ -21,25 +18,25 @@ test_that("un seul =", {
 
   expect_equal(
     value_to_vect('"a"="A"'),
-    fmtsas_chr(c("a" = "A"))
+    fmtsas_c(c("a" = "A"))
   )
 
   # avec blancs surnuméraires
   expect_equal(
     value_to_vect('  "a"\n =\n  "A" '),
-    fmtsas_chr(c("a" = "A"))
+    fmtsas_c(c("a" = "A"))
   )
 
   # virgule
   expect_equal(
     value_to_vect('"a1","a2"="A"'),
-    fmtsas_chr(c("a1" = "A", "a2" = "A"))
+    fmtsas_c(c("a1" = "A", "a2" = "A"))
   )
 
   # tiret
   expect_equal(
     value_to_vect('"a1"-"a2"="A"'),
-    fmtsas_chr(c("a1" = "A", "a2" = "A"))
+    fmtsas_c(c("a1" = "A", "a2" = "A"))
   )
 
 })
@@ -48,19 +45,19 @@ test_that("plusieurs =", {
 
   expect_equal(
     value_to_vect('"a"="A" "b"="B"'),
-    fmtsas_chr(c("a" = "A", "b" = "B"))
+    fmtsas_c(c("a" = "A", "b" = "B"))
   )
 
   # other
   expect_equal(
     value_to_vect('"a1","a2"="A" other = "X"'),
-    fmtsas_chr(c("a1" = "A", "a2" = "A"), other = "X")
+    fmtsas_c(c("a1" = "A", "a2" = "A"), other = "X")
   )
 
   # virgules, tirets
   expect_equal(
     value_to_vect('"a1","a2"="A" "b1"-"b3"="B" "c"="C"'),
-    fmtsas_chr(c("a1" = "A", "a2" = "A", "b1" = "B", "b3" = "B", "c" = "C"))
+    fmtsas_c(c("a1" = "A", "a2" = "A", "b1" = "B", "b3" = "B", "c" = "C"))
   )
 
   # virgules, tirets + blancs intercalés + other
@@ -71,7 +68,7 @@ test_that("plusieurs =", {
       "c"        = "C"
       other      = "ERROR"
     '),
-    fmtsas_chr(
+    fmtsas_c(
       c(
         "a1" = "A", "a2" = "A",
         "b1" = "B", "b3" = "B",
@@ -117,12 +114,12 @@ test_that("exemple complet", {
   expect_equal(
     res,
     list(
-      sexe = fmtsas_chr(c("1" = "Homme", "2" = "Femme")),
-      rega = fmtsas_chr(c(
+      sexe = fmtsas_c(c("1" = "Homme", "2" = "Femme")),
+      rega = fmtsas_c(c(
         "11" = "Métropole", "24" = "Métropole",
         "01" = "Outre-mer", "02" = "Outre-mer", "03" = "Outre-mer"
       )),
-      az = fmtsas_chr(c("A" = "AZ", "Z" = "AZ"))
+      az = fmtsas_c(c("A" = "AZ", "Z" = "AZ"))
     )
   )
 
@@ -143,7 +140,7 @@ test_that("quote", {
       test_pgm,
       quote = "double" # [+]
     ),
-    list(sexe = fmtsas_chr(c("1" = "Homme", "2" = "Femme")))
+    list(sexe = fmtsas_c(c("1" = "Homme", "2" = "Femme")))
   )
 
   expect_equal(
@@ -152,7 +149,7 @@ test_that("quote", {
       quote = "simple" # [+]
     ),
     list(
-      rega = fmtsas_chr(c(
+      rega = fmtsas_c(c(
         "11" = "Métropole", "24" = "Métropole",
         "01" = "Outre-mer", "02" = "Outre-mer", "03" = "Outre-mer"
       ))
@@ -167,7 +164,7 @@ test_that("other", {
 
   expect_equal(
     from_pgm(test_pgm),
-    list(sexe = fmtsas_chr(c("1" = "Homme", "2" = "Femme"), other = "?"))
+    list(sexe = fmtsas_c(c("1" = "Homme", "2" = "Femme"), other = "?"))
   )
 
   expect_equal(
@@ -178,8 +175,8 @@ test_that("other", {
       )
     ),
     list(
-      sexe  = fmtsas_chr(c("1" = "Homme", "2" = "Femme"), other = "?"),
-      sexe_ = fmtsas_chr(c("1" = "Homme", "2" = "Femme"), other = "Inconnu")
+      sexe  = fmtsas_c(c("1" = "Homme", "2" = "Femme"), other = "?"),
+      sexe_ = fmtsas_c(c("1" = "Homme", "2" = "Femme"), other = "Inconnu")
     )
   )
 
@@ -201,7 +198,7 @@ test_that("source", {
       source = TRUE # [+]
     ),
     structure(
-      list(sexe = fmtsas_chr(c("1" = "Homme", "2" = "Femme"))),
+      list(sexe = fmtsas_c(c("1" = "Homme", "2" = "Femme"))),
       source = paste(test_pgm, collapse = "\n")
     )
   )

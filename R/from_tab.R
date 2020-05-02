@@ -29,7 +29,10 @@
 #'   - les noms de la liste correspondent aux noms des formats (`FMTNAME`) ;
 #'   - les éléments de la liste sont des vecteurs contenant les relations entre
 #'   valeurs initiales et valeurs converties ;
-#'   - chaque élément a un attribut `"other"` (éventuellement vide).
+#'   - chaque élément a un attribut `"other"` (éventuellement vide) ;
+#'   - chaque élément est un objet de type [`fmtsas_c`], ce qui permet
+#'     d'utiliser l'[opérateur de sélection][extract.fmtsas_c] avec prise en
+#'     compte des valeurs par défaut (`other`).
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'
@@ -42,10 +45,11 @@
 #' # donnees en entree (provenant d'une table SAS)
 #' format_data <-
 #'   data.frame(
-#'     FMTNAME = c("v1fmt", "v1fmt", "v1fmt", "v2fmt", "v2fmt"),
-#'     TYPE    = c(    "C",     "C",     "C",     "C",     "C"),
-#'     START   = c(    "1",     "2",     "3",     "A",     "B"),
-#'     LABEL   = c("Lib 1", "Lib23", "Lib23", "Lib A", "Lib B")
+#'     FMTNAME = c( "fmt1_", "fmt1_", "fmt1_", "fmt1_",  "sexe",  "sexe"),
+#'     TYPE    = c(     "C",     "C",     "C",     "C",     "C",     "C"),
+#'     START   = c(     "A",     "B",     "C",      NA,     "1",     "2"),
+#'     LABEL   = c(     "A",    "BC",    "BC", "ERROR", "Homme", "Femme"),
+#'     HLO     = c(      NA,      NA,      NA,     "O",      NA,      NA)
 #'   )
 #'
 #' conv <- from_tab(format_data)
@@ -55,12 +59,12 @@
 #' # soit un jeu de donnees contenant des codes a convertir en libelles
 #' donnees <-
 #'   data.frame(
-#'     VAR1_CODE = c("1", "2", "3", "1", "Z"),
-#'     stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
+#'     VAR1_CODE = c("A", "B", "A", "C", "Z", NA)
 #'   )
 #'
 #' # pour remplacer les codes par les libelles (pour VAR1)
-#' donnees$VAR1_LIB <- conv$v1fmt[donnees$VAR1_CODE]
+#' donnees$VAR1_LIB  <- conv$fmt1_[donnees$VAR1_CODE]
+#' donnees$VAR1_LIB2 <- conv$fmt1_[donnees$VAR1_CODE, keep_na = TRUE]
 #'
 #' donnees
 
@@ -126,10 +130,7 @@ from_tab <- function(sas_data) {
   # ajouts attributs other
   lapply(
     setNames(names(res), names(res)),
-    function(nm) {
-      attr(res[[nm]], "other") <- unname(others[nm])
-      res[[nm]]
-    }
+    function(nm) fmtsas_c(res[[nm]], other = unname(others[nm]))
   )
 
 }

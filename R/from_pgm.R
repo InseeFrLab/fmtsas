@@ -73,11 +73,11 @@ value_to_vect <- function(value_txt) {
   ins <- lapply(ins, function(x) x[ , 2])
 
   rep_outs <- rep(outs, lengths(ins))
-  res <- setNames(rep_outs, unlist(ins))
 
-  # ajout attribut other
-  attr(res, "other") <- other
-  res
+  fmtsas_c(
+    setNames(rep_outs, unlist(ins)),
+    other = other
+  )
 
 }
 
@@ -127,7 +127,10 @@ value_to_vect <- function(value_txt) {
 #'   - les noms de la liste correspondent aux noms des formats (`value $...`) ;
 #'   - les éléments de la liste sont des vecteurs contenant les relations entre
 #'   valeurs initiales et valeurs converties ;
-#'   - chaque élément a un attribut `"other"` (éventuellement vide).
+#'   - chaque élément a un attribut `"other"` (éventuellement vide);
+#'   - chaque élément est un objet de type [`fmtsas_c`], ce qui permet
+#'     d'utiliser l'[opérateur de sélection][extract.fmtsas_c] avec prise en
+#'     compte des valeurs par défaut (`other`).
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'
@@ -149,12 +152,12 @@ value_to_vect <- function(value_txt) {
 #' # soit un jeu de donnees contenant des codes a convertir en libelles
 #' donnees <-
 #'   data.frame(
-#'     ACT_CODE = c("B", "C", "I", "W", "H"),
-#'     stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
+#'     ACT_CODE = c("B", NA, "C", "I", "W", "H")
 #'   )
 #'
 #' # pour remplacer les codes par les libelles (pour ACT_CODE)
-#' donnees$ACT_LIB <- conv$a13_[donnees$ACT_CODE]
+#' donnees$ACT_LIB  <- conv$a13_[donnees$ACT_CODE]
+#' donnees$ACT_LIB2 <- conv$a13_[donnees$ACT_CODE, keep_na = TRUE]
 #'
 #' donnees
 

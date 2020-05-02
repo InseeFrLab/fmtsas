@@ -25,7 +25,10 @@ avaient été générées par SAS via une \verb{proc format}.
 \item les noms de la liste correspondent aux noms des formats (\code{value $...}) ;
 \item les éléments de la liste sont des vecteurs contenant les relations entre
 valeurs initiales et valeurs converties ;
-\item chaque élément a un attribut \code{"other"} (éventuellement vide).
+\item chaque élément a un attribut \code{"other"} (éventuellement vide);
+\item chaque élément est un objet de type \code{\link{fmtsas_c}}, ce qui permet
+d'utiliser l'\link[=extract.fmtsas_c]{opérateur de sélection} avec prise en
+compte des valeurs par défaut (\code{other}).
 }
 
 Voir les exemples pour l'utilisation de cette liste.
@@ -75,12 +78,12 @@ conv <- from_pgm(test_pgm)
 # soit un jeu de donnees contenant des codes a convertir en libelles
 donnees <-
   data.frame(
-    ACT_CODE = c("B", "C", "I", "W", "H"),
-    stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
+    ACT_CODE = c("B", NA, "C", "I", "W", "H")
   )
 
 # pour remplacer les codes par les libelles (pour ACT_CODE)
-donnees$ACT_LIB <- conv$a13_[donnees$ACT_CODE]
+donnees$ACT_LIB  <- conv$a13_[donnees$ACT_CODE]
+donnees$ACT_LIB2 <- conv$a13_[donnees$ACT_CODE, keep_na = TRUE]
 
 donnees
 }

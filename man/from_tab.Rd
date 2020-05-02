@@ -18,7 +18,10 @@ avaient été générées par une proc format.
 \item les noms de la liste correspondent aux noms des formats (\code{FMTNAME}) ;
 \item les éléments de la liste sont des vecteurs contenant les relations entre
 valeurs initiales et valeurs converties ;
-\item chaque élément a un attribut \code{"other"} (éventuellement vide).
+\item chaque élément a un attribut \code{"other"} (éventuellement vide) ;
+\item chaque élément est un objet de type \code{\link{fmtsas_c}}, ce qui permet
+d'utiliser l'\link[=extract.fmtsas_c]{opérateur de sélection} avec prise en
+compte des valeurs par défaut (\code{other}).
 }
 
 Voir les exemples pour l'utilisation de cette liste.
@@ -44,10 +47,11 @@ par défaut, l'attribut est quand même présent avec la valeur \code{NA}.
 # donnees en entree (provenant d'une table SAS)
 format_data <-
   data.frame(
-    FMTNAME = c("v1fmt", "v1fmt", "v1fmt", "v2fmt", "v2fmt"),
-    TYPE    = c(    "C",     "C",     "C",     "C",     "C"),
-    START   = c(    "1",     "2",     "3",     "A",     "B"),
-    LABEL   = c("Lib 1", "Lib23", "Lib23", "Lib A", "Lib B")
+    FMTNAME = c( "fmt1_", "fmt1_", "fmt1_", "fmt1_",  "sexe",  "sexe"),
+    TYPE    = c(     "C",     "C",     "C",     "C",     "C",     "C"),
+    START   = c(     "A",     "B",     "C",      NA,     "1",     "2"),
+    LABEL   = c(     "A",    "BC",    "BC", "ERROR", "Homme", "Femme"),
+    HLO     = c(      NA,      NA,      NA,     "O",      NA,      NA)
   )
 
 conv <- from_tab(format_data)
@@ -57,12 +61,12 @@ conv <- from_tab(format_data)
 # soit un jeu de donnees contenant des codes a convertir en libelles
 donnees <-
   data.frame(
-    VAR1_CODE = c("1", "2", "3", "1", "Z"),
-    stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
+    VAR1_CODE = c("A", "B", "A", "C", "Z", NA)
   )
 
 # pour remplacer les codes par les libelles (pour VAR1)
-donnees$VAR1_LIB <- conv$v1fmt[donnees$VAR1_CODE]
+donnees$VAR1_LIB  <- conv$fmt1_[donnees$VAR1_CODE]
+donnees$VAR1_LIB2 <- conv$fmt1_[donnees$VAR1_CODE, keep_na = TRUE]
 
 donnees
 }
