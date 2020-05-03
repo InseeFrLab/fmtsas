@@ -2,21 +2,17 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
-[![Project Status: Work in
-progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![pipeline
-status](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/pipelines)
-[![coverage
-report](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/coverage.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/commits/master)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
+[![Project Status: Work in progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![pipeline status](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/pipelines)
+[![coverage report](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/coverage.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/commits/master)
+[![CRAN status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
 <!-- badges: end -->
 
 ![](https://git.stable.innovation.insee.eu/uploads/-/system/project/avatar/3136/visuel_fmt_sas.png?width=64)
 
 # fmtsas
 
-Le package R *fmtsas* permet d’importer dans R des données servant à
+Le package R **fmtsas** permet d’importer dans R des données servant à
 construire des formats SAS.
 
 Pour cela, il construit une liste de vecteurs, à partir de tables SAS ou
@@ -40,7 +36,7 @@ remotes::install_gitlab(
 )
 ```
 
-(sur AUS, il est possible qu’il faille répéter cette opération deux
+(sur AUS, il est possible qu’il faille répéter cette opération plusieurs
 fois)
 
 ## Exemples d’import des données
@@ -68,12 +64,16 @@ conv_t
 #>  "A" "BC" "BC" 
 #> attr(,"other")
 #> [1] "ERROR"
+#> attr(,"class")
+#> [1] "fmtsas_c" "fmtsas"  
 #> 
 #> $sexe
 #>       1       2 
 #> "Homme" "Femme" 
 #> attr(,"other")
 #> [1] NA
+#> attr(,"class")
+#> [1] "fmtsas_c" "fmtsas"
 ```
 
 [Documentation détaillée de la
@@ -110,6 +110,8 @@ conv_p
 #> "Homme" "Femme" 
 #> attr(,"other")
 #> [1] NA
+#> attr(,"class")
+#> [1] "fmtsas_c" "fmtsas"  
 #> 
 #> $rega
 #>          01          02          03          04          05          11 
@@ -120,6 +122,8 @@ conv_p
 #> "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" 
 #> attr(,"other")
 #> [1] "ERREUR"
+#> attr(,"class")
+#> [1] "fmtsas_c" "fmtsas"
 ```
 
 [Documentation détaillée de la
@@ -128,8 +132,20 @@ fonction](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/from_pgm.html
 
 ## Utilisation
 
-La liste de vecteurs nommés que retournent les deux fonctions peuvent
-être utilisés pour convertir des variables caractères d’un data.frame.
+### Format de l’objet
+
+`from_tab` et `from_pgm` retournent toutes deux une liste de vecteurs :
+
+  - les noms de la liste correspondent aux noms des formats SAS ;
+  - les éléments de la liste sont des vecteurs contenant les relations
+    entre valeurs initiales et valeurs converties ;
+  - chaque élément a un attribut `"other"` (éventuellement vide) ;
+  - chaque élément est un objet de type `fmtsas_c`, ce qui permet
+    d’utiliser l’[opérateur de
+    sélection](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/extract.fmtsas_c.html)
+    `[]` avec prise en compte des valeurs par défaut (`other`).
+
+### Exemple d’utilisation
 
 Par exemple, si l’on a un jeu de données avec des codes pour lesquels on
 souhaite avoir une correspondance en clair et/ou une agrégation.
@@ -137,10 +153,9 @@ souhaite avoir une correspondance en clair et/ou une agrégation.
 ``` r
 donnees <-
   data.frame(
-    ID   = c("001", "002", "003", "004"),
-    SEXE = c(  "1",   "2",   "1",   "2"),
-    REG  = c( "04",  "11",  "24",  "27"),
-    stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
+    ID   = c("001", "002", "003", "004", "005"),
+    SEXE = c(  "1",   "2",   "1",   "2",   "#"),
+    REG  = c( "04",  "11",  "##",    NA,  "24")
   )
 ```
 
@@ -151,12 +166,15 @@ donnees$SEXE_LIB <- conv_t$sexe[donnees$SEXE]
 donnees$REG2 <- conv_p$rega[donnees$REG]
 
 donnees
-#>    ID SEXE REG SEXE_LIB      REG2
-#> 1 001    1  04    Homme Outre-mer
-#> 2 002    2  11    Femme Métropole
-#> 3 003    1  24    Homme Métropole
-#> 4 004    2  27    Femme Métropole
+#>    ID SEXE  REG SEXE_LIB      REG2
+#> 1 001    1   04    Homme Outre-mer
+#> 2 002    2   11    Femme Métropole
+#> 3 003    1   ##    Homme    ERREUR
+#> 4 004    2 <NA>    Femme    ERREUR
+#> 5 005    #   24     <NA> Métropole
 ```
+
+### Conversion de code SAS
 
 Le package offre également la possibilité de rechercher dans un
 programme SAS les instructions qui créent des variables à partir de
@@ -183,12 +201,16 @@ convert_put(pgm_sas, fmt_list = "conv_p", style = "base")
 Il ne reste plus qu’à copier ces instructions dans un programme R (après
 quelques éventuels ajustements).
 
-## Amélioration
+## Améliorations
 
-Package en cours de développement. [Contribuez
-\!](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas)
+Package en cours de développement.
 
-  - signaler des bugs ou des cas où le package ne fonctionne pas
-    correctement (de préference
-    [ici](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues))
-  - proposer une amélioration du code
+[Contribuez](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas),
+notamment en signalant des bugs ou des cas où le package ne fonctionne
+pas correctement (de préference
+[ici](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues)).
+
+Pistes à explorer :
+
+  - gestion des formats numériques ;
+  - amélioration de la gestion des commentaires SAS.

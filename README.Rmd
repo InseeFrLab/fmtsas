@@ -11,7 +11,6 @@ output: github_document
 [![CRAN status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
 <!-- badges: end -->
 
-
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -24,8 +23,8 @@ library(fmtsas)
 
 # fmtsas
 
-Le package R _fmtsas_ permet d'importer dans R des données servant à construire
-des formats SAS.
+Le package R **fmtsas** permet d'importer dans R des données servant à
+construire des formats SAS.
 
 Pour cela, il construit une liste de vecteurs, à partir de tables SAS ou de
 programmes SAS. Cette liste pourra ensuite être utilisée pour effectuer des
@@ -47,7 +46,7 @@ remotes::install_gitlab(
   build   = FALSE
 )
 ```
-(sur AUS, il est possible qu'il faille répéter cette opération deux fois)
+(sur AUS, il est possible qu'il faille répéter cette opération plusieurs fois)
 
 ## Exemples d'import des données
 
@@ -103,8 +102,19 @@ conv_p
 
 ## Utilisation
 
-La liste de vecteurs nommés que retournent les deux fonctions peuvent être
-utilisés pour convertir des variables caractères d'un data.frame.
+### Format de l'objet
+
+`from_tab` et `from_pgm` retournent toutes deux une liste de vecteurs :
+
+- les noms de la liste correspondent aux noms des formats SAS ;
+- les éléments de la liste sont des vecteurs contenant les relations entre
+  valeurs initiales et valeurs converties ;
+- chaque élément a un attribut `"other"` (éventuellement vide) ;
+- chaque élément est un objet de type `fmtsas_c`, ce qui permet d'utiliser
+  l'[opérateur de sélection](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/extract.fmtsas_c.html)
+  `[]` avec prise en compte des valeurs par défaut (`other`).
+
+### Exemple d'utilisation
 
 Par exemple, si l'on a un jeu de données avec des codes pour lesquels on
 souhaite avoir une correspondance en clair et/ou une agrégation.
@@ -112,10 +122,9 @@ souhaite avoir une correspondance en clair et/ou une agrégation.
 ```{r}
 donnees <-
   data.frame(
-    ID   = c("001", "002", "003", "004"),
-    SEXE = c(  "1",   "2",   "1",   "2"),
-    REG  = c( "04",  "11",  "24",  "27"),
-    stringsAsFactors = FALSE # la conversion ne marche pas sur des facteurs
+    ID   = c("001", "002", "003", "004", "005"),
+    SEXE = c(  "1",   "2",   "1",   "2",   "#"),
+    REG  = c( "04",  "11",  "##",    NA,  "24")
   )
 ```
 
@@ -127,6 +136,8 @@ donnees$REG2 <- conv_p$rega[donnees$REG]
 
 donnees
 ```
+
+### Conversion de code SAS
 
 Le package offre également la possibilité de rechercher dans un programme SAS 
 les instructions qui créent des variables à partir de formats (de la forme
@@ -146,11 +157,15 @@ convert_put(pgm_sas, fmt_list = "conv_p", style = "base")
 Il ne reste plus qu'à copier ces instructions dans un programme R (après
 quelques éventuels ajustements).
 
-## Amélioration
+## Améliorations
 
 Package en cours de développement.
-[Contribuez !](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas)
 
-- signaler des bugs ou des cas où le package ne fonctionne pas correctement
-  (de préference [ici](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues))
-- proposer une amélioration du code
+[Contribuez](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas), notamment en
+signalant des bugs ou des cas où le package ne fonctionne pas correctement (de
+préference [ici](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues)).
+
+Pistes à explorer :
+
+  - gestion des formats numériques ;
+  - amélioration de la gestion des commentaires SAS.
