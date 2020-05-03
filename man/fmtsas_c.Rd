@@ -2,22 +2,39 @@
 % Please edit documentation in R/fmtsas_class.R
 \name{fmtsas_c}
 \alias{fmtsas_c}
-\title{Constructeur d'objet S3 fmtsas_c}
+\title{Objet de classe S3 "fmtsas_c"}
 \usage{
 fmtsas_c(x, other = NA_character_)
 }
 \arguments{
-\item{x}{vecteur caractère dont tous les éléments sont nommés représentant
+\item{x}{vecteur caractère (dont tous les éléments sont nommés) représentant
 un format SAS (association valeur entrée = valeur sortie).}
 
 \item{other}{modalité par défaut. Un vecteur caractère de longueur 1.}
 }
 \value{
-Un objet de classes \code{"fmtsas_c"} (et \code{"fmtsas"}). Ces objets seront
-en pratique créés par \link{from_tab} ou \link{from_pgm} (ces fonctions génèrent
-une liste d'objets de classe \code{fmtsas_c}).
+Un objet de classe \code{"fmtsas_c"} (et donc \code{"fmtsas"}), c'est-à-dire un
+vecteur nommé possédant un attribut "other".
 }
 \description{
-Construit un objet représentant un format caractère SAS en R, à partir de
+Construit un objet représentant en R un format caractère SAS, à partir de
 ses composantes (vecteur d'associations et modalité par défaut).
+}
+\details{
+La classe S3 \code{"fmtsas_c"} représente un format caractère SAS. Cette classe
+hérite de la classe \code{"fmtsas"}, qui représente tout type de format
+(caractère, numérique...).
+
+Un objet \code{"fmtsas_c"} est un vecteur nommé contenant les relations entre
+valeurs initiales et valeurs converties. Il possède en outre un attribut
+"other", où est stockée une valeur par défaut. Cette valeur sera utilisée
+lors d'une conversion avec l'\link[=extract.fmtsas_c]{opérateur de sélection}
+(\verb{[]}).
+
+Le nom du format n'est pas stocké dans ce type d'objet. Il pourra être
+spécifié comme un des noms d'un liste de \code{fmtsas}. Ces listes sont en
+pratique  générées par \link{from_tab} ou \link{from_pgm}.
+}
+\examples{
+fmtsas_c(c("A" = "LIBA", "B" = "LIB_B"), other = "??")
 }
