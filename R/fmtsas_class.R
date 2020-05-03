@@ -45,9 +45,17 @@ other.fmtsas <- function(x) attr(x, "other")
 # Setters -----------------------------------------------------------------
 
 'other<-' <- function(x, value) UseMethod("other<-")
+
 #' @export
 'other<-.fmtsas' <- function(x, value) {
-  stopifnot(is.character(value), length(value) == 1)
+
+  err_msg <- "`other` doit etre un vecteur caractere de longueur 1"
+
+  if (length(value) != 1) stop(err_msg)
+  if (is.na(value)) value <- NA_character_ # pour autoriser ecriture NA (lgl)
+  if (!is.character(value)) stop(err_msg)
+
   attr(x, "other") <- value
   x
+
 }
