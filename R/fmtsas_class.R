@@ -55,7 +55,7 @@ fmtsas_c <- function(x, other = NA_character_) {
 # Getters -----------------------------------------------------------------
 
 other <- function(x) UseMethod("other")
-#' @export
+
 other.fmtsas <- function(x) attr(x, "other")
 
 
@@ -63,7 +63,6 @@ other.fmtsas <- function(x) attr(x, "other")
 
 `other<-` <- function(x, value) UseMethod("other<-")
 
-#' @export
 `other<-.fmtsas` <- function(x, value) {
 
   err_msg <- "`other` doit etre un vecteur caractere de longueur 1"
