@@ -76,7 +76,15 @@ test_that("type `* ;`", {
     "options mprint ;"
   )
 
+  expect_equal(
+    rm_sas_comments('*value "a;b"="x;y";options mprint ;'),
+    "options mprint ;"
+  )
 
+  expect_equal(
+    rm_sas_comments('*value "a;b"="x;y";options mprint ;*data t;'),
+    "options mprint ;"
+  )
 
 })
 
