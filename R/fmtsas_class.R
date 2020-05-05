@@ -17,10 +17,10 @@
 #'
 #' Le nom du format n'est pas stocké dans ce type d'objet. Il pourra être
 #' spécifié comme un des noms d'un liste de `fmtsas`. Ces listes sont en
-#' pratique  générées par [from_tab] ou [from_pgm].
+#' pratique générées par [from_tab] ou [from_pgm].
 #'
 #' @param x vecteur caractère (dont tous les éléments sont nommés) représentant
-#'   un format SAS (association valeur entrée = valeur sortie).
+#'   un format SAS (association _valeur(s) entrée = valeur sortie_).
 #' @param other modalité par défaut. Un vecteur caractère de longueur 1.
 #'
 #' @return Un objet de classe `"fmtsas_c"` (et donc `"fmtsas"`), c'est-à-dire un

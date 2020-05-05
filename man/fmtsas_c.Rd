@@ -8,7 +8,7 @@ fmtsas_c(x, other = NA_character_)
 }
 \arguments{
 \item{x}{vecteur caractère (dont tous les éléments sont nommés) représentant
-un format SAS (association valeur entrée = valeur sortie).}
+un format SAS (association \emph{valeur(s) entrée = valeur sortie}).}
 
 \item{other}{modalité par défaut. Un vecteur caractère de longueur 1.}
 }
@@ -33,7 +33,7 @@ lors d'une conversion avec l'\link[=extract.fmtsas_c]{opérateur de sélection}
 
 Le nom du format n'est pas stocké dans ce type d'objet. Il pourra être
 spécifié comme un des noms d'un liste de \code{fmtsas}. Ces listes sont en
-pratique  générées par \link{from_tab} ou \link{from_pgm}.
+pratique générées par \link{from_tab} ou \link{from_pgm}.
 }
 \examples{
 fmtsas_c(c("A" = "LIBA", "B" = "LIB_B"), other = "??")
