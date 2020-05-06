@@ -39,6 +39,12 @@ remotes::install_gitlab(
 (sur AUS, il est possible qu’il faille répéter cette opération plusieurs
 fois)
 
+## Chargement
+
+``` r
+library(fmtsas)
+```
+
 ## Exemples d’import des données
 
 ### Depuis une table : `from_tab`
@@ -130,11 +136,12 @@ conv_p
 fonction](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/from_pgm.html).
 <!-- lien en dur, trouver un moyen de rendre cela portable -->
 
-## Utilisation
+## Utilisation après import
 
 ### Format de l’objet
 
-`from_tab` et `from_pgm` retournent toutes deux une liste de vecteurs :
+Les fonctions `from_tab` et `from_pgm` retournent toutes deux une liste
+de vecteurs :
 
   - les noms de la liste correspondent aux noms des formats SAS ;
   - les éléments de la liste sont des vecteurs contenant les relations
