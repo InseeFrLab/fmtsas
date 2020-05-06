@@ -68,7 +68,9 @@ other.fmtsas <- function(x) attr(x, "other")
   err_msg <- "`other` doit etre un vecteur caractere de longueur 1"
 
   if (length(value) != 1) stop(err_msg)
-  if (is.na(value)) value <- NA_character_ # pour autoriser ecriture NA (lgl)
+  if (is.na(value) && is.logical(value)) { # pour autoriser ecriture NA (lgl)
+    value <- NA_character_
+  }
   if (!is.character(value)) stop(err_msg)
 
   attr(x, "other") <- value

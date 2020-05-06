@@ -79,10 +79,33 @@ test_that("get", {
 
 test_that("set", {
 
+  expect_error(
+    other(conv1) <- 1,
+    "vecteur caractere de longueur 1"
+  )
+
+  expect_error(
+    other(conv1) <- 1:5,
+    "vecteur caractere de longueur 1"
+  )
+
+  expect_error(
+    other(conv1) <- c("ERR", "Inconnu"),
+    "vecteur caractere de longueur 1"
+  )
+
+  expect_error(
+    other(conv2) <- NA_integer_,
+    "vecteur caractere de longueur 1"
+  )
+
   other(conv1) <- "ERR"
   expect_equal(other(conv1), "ERR")
 
   other(conv2) <- NA_character_
+  expect_equal(other(conv2), NA_character_)
+
+  other(conv2) <- NA
   expect_equal(other(conv2), NA_character_)
 
 })
