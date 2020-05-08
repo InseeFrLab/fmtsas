@@ -25,10 +25,10 @@ avaient été générées par SAS via une \verb{proc format}.
 \item les noms de la liste correspondent aux noms des formats (\code{value $...}) ;
 \item les éléments de la liste sont des vecteurs contenant les relations entre
 valeurs initiales et valeurs converties ;
-\item chaque élément a un attribut \code{"other"} (éventuellement vide);
+\item chaque élément a un éventuel attribut \code{"other"} ;
 \item chaque élément est un objet de type \code{\link{fmtsas_c}}, ce qui permet
 d'utiliser l'\link[=extract.fmtsas_c]{opérateur de sélection} avec prise en
-compte des valeurs par défaut (\code{other}).
+compte d'une valeur par défaut (\code{other}).
 }
 
 Voir les exemples pour l'utilisation de cette liste.
@@ -63,7 +63,7 @@ doubles ne détectera qu'un type et pas l'autre.
 
 La modalité SAS \code{other} (valeur par défaut) est sauvegardée dans l'attribut
 "other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
-par défaut, l'attribut est quand même présent avec la valeur \code{NA}.
+par défaut, l'attribut n'est pas présent.
 }
 \examples{
 test_pgm <- readLines(

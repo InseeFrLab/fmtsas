@@ -37,7 +37,6 @@ test_that("constructeur", {
     fmtsas_c(c("A" = "LIB_A", "B" = "LIB_B")),
     structure(
       c("A" = "LIB_A", "B" = "LIB_B"),
-      other = NA_character_,
       class = c("fmtsas_c", "fmtsas")
     )
   )
@@ -71,7 +70,7 @@ context("other.fmtsas")
 
 test_that("get", {
 
-  expect_equal(other(conv1), NA_character_)
+  expect_equal(other(conv1), NULL)
 
   expect_equal(other(conv2), "?")
 
@@ -99,13 +98,19 @@ test_that("set", {
     "vecteur caractere de longueur 1"
   )
 
+  other(conv1) <- NULL
+  expect_null(attr(conv1, "other"))
+
+  other(conv2) <- NULL
+  expect_null(attr(conv2, "other"))
+
   other(conv1) <- "ERR"
-  expect_equal(other(conv1), "ERR")
+  expect_equal(attr(conv1, "other"), "ERR")
 
   other(conv2) <- NA_character_
-  expect_equal(other(conv2), NA_character_)
+  expect_equal(attr(conv2, "other"), NA_character_)
 
   other(conv2) <- NA
-  expect_equal(other(conv2), NA_character_)
+  expect_equal(attr(conv2, "other"), NA_character_)
 
 })

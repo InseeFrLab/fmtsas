@@ -66,7 +66,7 @@ value_to_vect <- function(value_txt) {
     ins  <- ins[!is_other] # rm other from ins
     outs <- outs[!is_other] # rm other from outs
   } else {
-    other <- NA_character_
+    other <- NULL
   }
 
   ins <- stringr::str_match_all(ins, '"([^"]+)"')
@@ -111,7 +111,7 @@ value_to_vect <- function(value_txt) {
 #'
 #' La modalité SAS `other` (valeur par défaut) est sauvegardée dans l'attribut
 #' "other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
-#' par défaut, l'attribut est quand même présent avec la valeur `NA`.
+#' par défaut, l'attribut n'est pas présent.
 #'
 #' @param sas_pgm un programme SAS sous la forme d'un vecteur de chaînes de
 #'   caractères.
@@ -127,10 +127,10 @@ value_to_vect <- function(value_txt) {
 #'   - les noms de la liste correspondent aux noms des formats (`value $...`) ;
 #'   - les éléments de la liste sont des vecteurs contenant les relations entre
 #'   valeurs initiales et valeurs converties ;
-#'   - chaque élément a un attribut `"other"` (éventuellement vide);
+#'   - chaque élément a un éventuel attribut `"other"` ;
 #'   - chaque élément est un objet de type [`fmtsas_c`], ce qui permet
 #'     d'utiliser l'[opérateur de sélection][extract.fmtsas_c] avec prise en
-#'     compte des valeurs par défaut (`other`).
+#'     compte d'une valeur par défaut (`other`).
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'

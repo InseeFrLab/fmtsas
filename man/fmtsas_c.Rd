@@ -4,17 +4,18 @@
 \alias{fmtsas_c}
 \title{Objet de classe S3 "fmtsas_c"}
 \usage{
-fmtsas_c(x, other = NA_character_)
+fmtsas_c(x, other = NULL)
 }
 \arguments{
 \item{x}{vecteur caractère (dont tous les éléments sont nommés) représentant
 un format SAS (association \emph{valeur(s) entrée = valeur sortie}).}
 
-\item{other}{modalité par défaut. Un vecteur caractère de longueur 1.}
+\item{other}{modalité par défaut (paramètre optionnel). Un vecteur caractère
+de longueur 1.}
 }
 \value{
 Un objet de classe \code{"fmtsas_c"} (et donc \code{"fmtsas"}), c'est-à-dire un
-vecteur nommé possédant un attribut "other".
+vecteur nommé possédant un éventuel attribut "other".
 }
 \description{
 Construit un objet représentant en R un format caractère SAS, à partir de
@@ -36,5 +37,6 @@ spécifié comme un des noms d'un liste de \code{fmtsas}. Ces listes sont en
 pratique générées par \link{from_tab} ou \link{from_pgm}.
 }
 \examples{
+fmtsas_c(c("A" = "LIBA", "B" = "LIB_B"))
 fmtsas_c(c("A" = "LIBA", "B" = "LIB_B"), other = "??")
 }

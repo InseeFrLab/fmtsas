@@ -29,10 +29,10 @@
 #'   - les noms de la liste correspondent aux noms des formats (`FMTNAME`) ;
 #'   - les éléments de la liste sont des vecteurs contenant les relations entre
 #'   valeurs initiales et valeurs converties ;
-#'   - chaque élément a un attribut `"other"` (éventuellement vide) ;
+#'   - chaque élément a un éventuel attribut `"other"` ;
 #'   - chaque élément est un objet de type [`fmtsas_c`], ce qui permet
 #'     d'utiliser l'[opérateur de sélection][extract.fmtsas_c] avec prise en
-#'     compte des valeurs par défaut (`other`).
+#'     compte d'une valeur par défaut (`other`).
 #'
 #'   Voir les exemples pour l'utilisation de cette liste.
 #'
@@ -130,7 +130,13 @@ from_tab <- function(sas_data) {
   # ajouts attributs other
   lapply(
     setNames(names(res), names(res)),
-    function(nm) fmtsas_c(res[[nm]], other = unname(others[nm]))
+    function(nm) {
+      oth <- unname(others[nm])
+      fmtsas_c(
+        res[[nm]],
+        other = if (is.na(oth)) NULL else oth
+      )
+    }
   )
 
 }

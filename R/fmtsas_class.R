@@ -21,17 +21,19 @@
 #'
 #' @param x vecteur caractère (dont tous les éléments sont nommés) représentant
 #'   un format SAS (association _valeur(s) entrée = valeur sortie_).
-#' @param other modalité par défaut. Un vecteur caractère de longueur 1.
+#' @param other modalité par défaut (paramètre optionnel). Un vecteur caractère
+#'   de longueur 1.
 #'
 #' @return Un objet de classe `"fmtsas_c"` (et donc `"fmtsas"`), c'est-à-dire un
-#'   vecteur nommé possédant un attribut "other".
+#'   vecteur nommé possédant un éventuel attribut "other".
 #'
 #' @export
 #'
 #' @examples
+#' fmtsas_c(c("A" = "LIBA", "B" = "LIB_B"))
 #' fmtsas_c(c("A" = "LIBA", "B" = "LIB_B"), other = "??")
 
-fmtsas_c <- function(x, other = NA_character_) {
+fmtsas_c <- function(x, other = NULL) {
 
   if (!is.character(x)) {
     stop("`x` doit etre un vecteur caractere")
@@ -39,7 +41,7 @@ fmtsas_c <- function(x, other = NA_character_) {
   if (is.null(names(x)) || any(names(x) == "") || anyNA(names(x))) {
     stop("tous les elements doivent avoir un nom")
   }
-  if (!is.character(other) || length(other) != 1) {
+  if (!is.null(other) && (!is.character(other) || length(other) != 1L)) {
     stop("`other` doit etre un vecteur caractere de longueur 1")
   }
 
@@ -67,11 +69,13 @@ other.fmtsas <- function(x) attr(x, "other")
 
   err_msg <- "`other` doit etre un vecteur caractere de longueur 1"
 
-  if (length(value) != 1) stop(err_msg)
-  if (is.na(value) && is.logical(value)) { # pour autoriser ecriture NA (lgl)
-    value <- NA_character_
+  if (!is.null(value)) {
+    if (length(value) != 1) stop(err_msg)
+    if (is.na(value) && is.logical(value)) { # pour autoriser ecriture NA (lgl)
+      value <- NA_character_
+    }
+    if (!is.character(value)) stop(err_msg)
   }
-  if (!is.character(value)) stop(err_msg)
 
   attr(x, "other") <- value
   x
