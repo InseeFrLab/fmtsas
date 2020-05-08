@@ -74,6 +74,27 @@ test_that("exemple mix", {
 
 })
 
+
+test_that("other NULL conserve valeur initiales", {
+
+  conv_n <-
+    fmtsas_c(
+      c("A" = "LIB_A", "B" = "LIB_B"),
+      other = NULL # [+]
+    )
+
+  expect_equal(
+    conv_n[c("A", "Z", NA, "B", "A")],
+    c("LIB_A", "Z", NA, "LIB_B", "LIB_A")
+  )
+
+  expect_equal(
+    conv_n[c("A", "Z", NA, "B", "A"), keep_na = TRUE],
+    c("LIB_A", "Z", NA, "LIB_B", "LIB_A")
+  )
+
+})
+
 test_that("i facteur", {
 
   expect_equal(

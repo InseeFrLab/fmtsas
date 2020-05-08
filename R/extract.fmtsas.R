@@ -5,7 +5,8 @@
 #'
 #' L'opérateur `[]` pour un objet "fmtsas_c" s'utilise de la même façon que le
 #' `[]` habituel. La différence est qu'il remplace les valeurs inconnues par la
-#' valeur définie dans l'attribut `"other"`.
+#' valeur définie dans l'attribut `"other"`. Si cet attribut n'est pas présent,
+#' les valeurs initiales sont conservées telles quelles.
 #'
 #' Autres particularités :
 #'
@@ -51,7 +52,12 @@
   }
 
   res <- unclass(x)[i] # extraction standard
-  res[is.na(res)] <- attr(x, "other") # remplace NA par attr other
+
+  if (is.null(other(x))) {
+    res[is.na(res)] <- i[is.na(res)] # valeurs initiales
+  } else {
+    res[is.na(res)] <- attr(x, "other") # remplace NA par attr other
+  }
 
   if (keep_na) {
     res[na_pos] <- NA_character_ # remet les NA initiaux à NA

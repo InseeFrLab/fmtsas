@@ -26,7 +26,8 @@ par défaut.
 \details{
 L'opérateur \verb{[]} pour un objet "fmtsas_c" s'utilise de la même façon que le
 \verb{[]} habituel. La différence est qu'il remplace les valeurs inconnues par la
-valeur définie dans l'attribut \code{"other"}.
+valeur définie dans l'attribut \code{"other"}. Si cet attribut n'est pas présent,
+les valeurs initiales sont conservées telles quelles.
 
 Autres particularités :
 \itemize{
