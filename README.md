@@ -19,8 +19,8 @@ Pour cela, il construit une liste de vecteurs, à partir de tables SAS ou
 de programmes SAS. Cette liste pourra ensuite être utilisée pour
 effectuer des conversions ou agrégations.
 
-Le package ne gère (pour l’instant) que des formats caractères
-comportant un nombre défini de modalités.
+*Le package ne gère (pour l’instant) que des formats caractères
+comportant un nombre défini de modalités.*
 
 ## Installation
 
@@ -76,8 +76,6 @@ conv_t
 #> $sexe
 #>       1       2 
 #> "Homme" "Femme" 
-#> attr(,"other")
-#> [1] NA
 #> attr(,"class")
 #> [1] "fmtsas_c" "fmtsas"
 ```
@@ -114,8 +112,6 @@ conv_p
 #> $sexe
 #>       1       2 
 #> "Homme" "Femme" 
-#> attr(,"other")
-#> [1] NA
 #> attr(,"class")
 #> [1] "fmtsas_c" "fmtsas"  
 #> 
@@ -146,7 +142,7 @@ de vecteurs :
   - les noms de la liste correspondent aux noms des formats SAS ;
   - les éléments de la liste sont des vecteurs contenant les relations
     entre valeurs initiales et valeurs converties ;
-  - chaque élément a un attribut `"other"` (éventuellement vide) ;
+  - chaque élément a un éventuel attribut `"other"` ;
   - chaque élément est un objet de type `fmtsas_c`, ce qui permet
     d’utiliser l’[opérateur de
     sélection](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/extract.fmtsas_c.html)
@@ -178,7 +174,7 @@ donnees
 #> 2 002    2   11    Femme Métropole
 #> 3 003    1   ##    Homme    ERREUR
 #> 4 004    2 <NA>    Femme    ERREUR
-#> 5 005    #   24     <NA> Métropole
+#> 5 005    #   24        # Métropole
 ```
 
 ### Conversion de code SAS
@@ -217,7 +213,9 @@ notamment en signalant des bugs ou des cas où le package ne fonctionne
 pas correctement (de préference
 [ici](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues)).
 
-Pistes à explorer :
+Idées pour la suite :
 
-  - gestion des formats numériques ;
-  - amélioration de la gestion des commentaires SAS.
+  - gestion des formats numériques
+  - amélioration de la gestion des commentaires SAS
+    ([\#3](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues/3))
+  - traduction et soumission CRAN
