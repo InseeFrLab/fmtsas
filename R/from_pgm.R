@@ -152,12 +152,14 @@ value_to_vect <- function(value_txt) {
 #' # soit un jeu de donnees contenant des codes a convertir en libelles
 #' donnees <-
 #'   data.frame(
-#'     ACT_CODE = c("B", NA, "C", "I", "W", "H")
+#'     ACT_CODE = c( "B",   NA,  "C",  "P",  "W", "F"),
+#'     REG_CODE = c("94", "04", "44", "09", "01",  NA)
 #'   )
 #'
 #' # pour remplacer les codes par les libelles (pour ACT_CODE)
 #' donnees$ACT_LIB  <- conv$a13_[donnees$ACT_CODE]
 #' donnees$ACT_LIB2 <- conv$a13_[donnees$ACT_CODE, keep_na = TRUE]
+#' donnees$REG_LIB  <- conv$reg[donnees$REG_CODE]
 #'
 #' donnees
 

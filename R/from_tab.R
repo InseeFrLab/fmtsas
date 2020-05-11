@@ -59,12 +59,14 @@
 #' # soit un jeu de donnees contenant des codes a convertir en libelles
 #' donnees <-
 #'   data.frame(
-#'     VAR1_CODE = c("A", "B", "A", "C", "Z", NA)
+#'     VAR1_CODE = c("A", "B", "A", "C", "Z",  NA),
+#'     SEXE_CODE = c("1", "2", "1", "2",  NA, "Z")
 #'   )
 #'
 #' # pour remplacer les codes par les libelles (pour VAR1)
 #' donnees$VAR1_LIB  <- conv$fmt1_[donnees$VAR1_CODE]
 #' donnees$VAR1_LIB2 <- conv$fmt1_[donnees$VAR1_CODE, keep_na = TRUE]
+#' donnees$SEXE_LIB  <- conv$sexe[donnees$SEXE_CODE]
 #'
 #' donnees
 
