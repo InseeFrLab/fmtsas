@@ -6,7 +6,7 @@ proc format ;
   "02" = "Martinique"
   "03" = "Guyane"
   "04" = "La Réunion"
-  "05" = "Mayotte"
+  "06" = "Mayotte"
   "11" = "Île-de-France"
   "24" = "Centre-Val de Loire"
   "27" = "Bourgogne-Franche-Comté"
@@ -34,8 +34,6 @@ proc format ;
   "N"                = "Activités de services administratifs et de soutien"
   "P"                = "Enseignement"
   "Q"                = "Santé humaine et action sociale"
-  "R"                = "Arts, spectacles, activités récréatives"
-  "S"                = "Autres activités de services"
   other              = "Hors champ" ;
 
 run ;

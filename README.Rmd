@@ -90,7 +90,7 @@ test_pgm <-
      value vnum
        0-99 = "petit" 100-high = "grand" ; 
      value $rega /* (geographie) */
-       "01", "02", "03", "04", "05" = "Outre-mer"
+       "01", "02", "03", "04", "06" = "Outre-mer"
        "11", "24", "27", "28", "32",
        "44", "52", "53", "75", "76",
        "84", "93", "94"             = "Métropole"
