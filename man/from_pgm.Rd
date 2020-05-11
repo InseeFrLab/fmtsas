@@ -11,7 +11,7 @@ from_pgm(sas_pgm, quote = c("double", "simple"), source = FALSE)
 caractères.}
 
 \item{quote}{type de guillemet. SAS autorise deux types de guillemets pour
-décrire une chaîne de caractère. La fonction suppose que des guillemets
+décrire une chaîne de caractères. La fonction suppose que des guillemets
 doubles sont utilisés ("). Dans le cas contraire ('), spécifier
 \code{quote = "simple"}.}
 
@@ -58,8 +58,8 @@ permise par SAS. Elle n'est \strong{pas prise en compte} et ces intervalles sero
 ignorés.
 
 Il est possible de choisir le type de guillemets (double ou simple) entourant
-les valeurs. Un programme contenant un mélange de guillemets simples et
-doubles ne détectera qu'un type et pas l'autre.
+les valeurs. Avec un programme contenant un mélange de guillemets simples et
+doubles, la fonction ne détectera qu'un type et pas l'autre.
 
 La modalité SAS \code{other} (valeur par défaut) est sauvegardée dans l'attribut
 "other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
