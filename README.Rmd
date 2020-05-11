@@ -134,7 +134,8 @@ donnees <-
   )
 ```
 
-On utilise les listes générées par le package :
+On utilise les listes générées par les fonctions `from_*` et l’opérateur `[]`
+pour objet “fmtsas” :
 
 ```{r}
 donnees$SEXE_LIB <- conv_t$sexe[donnees$SEXE]
