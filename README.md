@@ -116,7 +116,7 @@ conv_p
 #> [1] "fmtsas_c" "fmtsas"  
 #> 
 #> $rega
-#>          01          02          03          04          05          11 
+#>          01          02          03          04          06          11 
 #> "Outre-mer" "Outre-mer" "Outre-mer" "Outre-mer" "Outre-mer" "Métropole" 
 #>          24          27          28          32          44          52 
 #> "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" 
