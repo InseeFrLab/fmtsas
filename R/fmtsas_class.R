@@ -10,14 +10,14 @@
 #' (caractère, numérique...).
 #'
 #' Un objet `"fmtsas_c"` est un vecteur nommé contenant les relations entre
-#' valeurs initiales et valeurs converties. Il possède en outre un attribut
-#' "other", où est stockée une valeur par défaut. Cette valeur sera utilisée
-#' lors d'une conversion avec l'[opérateur de sélection][extract.fmtsas_c]
-#' (`[]`).
+#' valeurs initiales et valeurs converties. Il possède en outre un éventuel
+#' attribut "other", où est stockée une valeur par défaut. Cette valeur sera
+#' utiliséelors d'une conversion avec
+#' l'[opérateur de sélection][extract.fmtsas_c](`[]`).
 #'
 #' Le nom du format n'est pas stocké dans ce type d'objet. Il pourra être
-#' spécifié comme un des noms d'un liste de `fmtsas`. Ces listes sont en
-#' pratique générées par [from_tab] ou [from_pgm].
+#' spécifié comme un des noms d'une liste de `fmtsas`. Une telle liste sera en
+#' pratique générée par [from_tab] ou [from_pgm].
 #'
 #' @param x vecteur caractère (dont tous les éléments sont nommés) représentant
 #'   un format SAS (association _valeur(s) entrée = valeur sortie_).
