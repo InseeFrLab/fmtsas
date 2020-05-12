@@ -12,7 +12,7 @@
 #' Un objet `"fmtsas_c"` est un vecteur nommé contenant les relations entre
 #' valeurs initiales et valeurs converties. Il possède en outre un éventuel
 #' attribut "other", où est stockée une valeur par défaut. Cette valeur sera
-#' utiliséelors d'une conversion avec
+#' utilisée lors d'une conversion avec
 #' l'[opérateur de sélection][extract.fmtsas_c](`[]`).
 #'
 #' Le nom du format n'est pas stocké dans ce type d'objet. Il pourra être
