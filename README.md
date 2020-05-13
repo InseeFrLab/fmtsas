@@ -144,9 +144,10 @@ de vecteurs :
     entre valeurs initiales et valeurs converties ;
   - chaque élément a un éventuel attribut `"other"` ;
   - chaque élément est un objet de type `fmtsas_c`, ce qui permet
-    d’utiliser l’[opérateur de
-    sélection](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/extract.fmtsas_c.html)
-    `[]` avec prise en compte des valeurs par défaut (`other`).
+    notamment d’utiliser
+    [`[]`](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/extract.fmtsas_c.html)
+    avec prise en compte des valeurs par défaut (`other`). Cf. infra
+    pour plus de détails sur cet opérateur.
 
 ### Exemple d’utilisation
 
@@ -177,6 +178,21 @@ donnees
 #> 4 004    2 <NA>    Femme    ERREUR
 #> 5 005    #   24        # Métropole
 ```
+
+> Utiliser `[]` sur un élément d’une liste créée par `from_tab` ou
+> `from_pgm` fonctionne comme une sélection sur des vecteurs *normaux*,
+> à la différence que d’éventuels `NA` seront remplacés par :
+> 
+>   - la valeur contenue dans l’attribut “other”, si cet attribut est
+>     présent ;
+>   - la valeur initiale, s’il n’y a pas d’attribut “other”.
+> 
+> Ces modifications ont pour but de reproduire le comportement d’un
+> format SAS.
+> 
+> Pour que cet opérateur dédié soit utilisé, il faut que **le package
+> soit chargé**. Dans le cas contraire, l’opérateur `[]` de base sera
+> utilisé.
 
 ### Conversion de code SAS
 
@@ -217,6 +233,4 @@ pas correctement (de préference
 Idées pour la suite :
 
   - gestion des formats numériques
-  - amélioration de la gestion des commentaires SAS
-    ([\#3](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues/3))
   - traduction et soumission CRAN
