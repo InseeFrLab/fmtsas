@@ -1,8 +1,5 @@
 destination: public
 
-development:
-  mode: auto
-
 navbar:
   right:
    - text: Contribuer
