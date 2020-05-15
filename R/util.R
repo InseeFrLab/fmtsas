@@ -6,8 +6,7 @@
 #
 # @param sas_pgm programme sas, vecteur de caractères de longueur 1.
 #
-# Gère pour l'instant les commentaires de type `/* ... */` (correctement) et
-# `* ... ;` (mal).
+# Gère pour l'instant les commentaires de type `/* ... */` et `* ... ;`.
 
 rm_sas_comments <- function(sas_pgm) {
 
@@ -16,8 +15,6 @@ rm_sas_comments <- function(sas_pgm) {
 
   # type * ... ;
   gsub("\\*[^;]+(;|$)", "", sas_pgm)
-  # TODO
-  #  [ ] pb si * ou ; dans chaine de caracteres exemple '*value "a;b"="x";'
 
 }
 
