@@ -36,10 +36,17 @@
 
 `[.fmtsas_c` <- function(x, i, keep_na = FALSE) {
 
+  # pour message erreur si `i` pas caractere
+  x_str <- deparse(substitute(x), nlines = 1)
+  i_str <- deparse(substitute(i), nlines = 1)
+
   if (is.numeric(i) || is.logical(i)) {
     stop(
-      "seule la selection par noms est autorisee pour un objet `fmtsas`\n  ",
-      "effectuer `unclass(...)` pour une utilisation classique de []"
+      "seule la selection par noms est autorisee pour un objet `fmtsas_c`,\n  ",
+      sprintf(
+        "pour une utilisation classique de [] : `unclass(%s)[%s]` ",
+        x_str, i_str
+      )
     )
   }
 
