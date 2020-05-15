@@ -228,3 +228,21 @@ test_that("vide", {
   )
 
 })
+
+test_that("doublons", {
+
+  test_pgm <-
+    c(
+      "VALUE $ sexe \"1\"=\"Homme\" \"2\"=\"Femme\" ;",
+      "value $rega",
+       "  '11', '24' = 'Métropole'",
+       "  '01', '02', '03' = 'Outre-mer';",
+      "VALUE $ sexe \"1\"=\"Homme\";"
+    )
+
+  expect_warning(
+    from_pgm(test_pgm),
+    "doublon"
+  )
+
+})

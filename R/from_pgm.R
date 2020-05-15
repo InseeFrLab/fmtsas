@@ -216,6 +216,15 @@ from_pgm <- function(sas_pgm,
     )
   }
 
+  # avertit doublons noms formats
+  dupl_fmt <- duplicated(fmtnames)
+  if (any(dupl_fmt)) {
+    warning(
+      "\nNoms de formats en doublon :\n  ",
+      paste(fmtnames[dupl_fmt], collapse = ", ")
+    )
+  }
+
   res <- setNames(assoc, fmtnames)
   if (source) attr(res, "source") <- orig
 
