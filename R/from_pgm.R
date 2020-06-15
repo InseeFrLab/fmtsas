@@ -187,7 +187,10 @@ from_pgm <- function(sas_pgm,
     )[[1]]
 
   if (!length(values)) {
-    warning("aucun format (de type caractere) dans sas_pgm")
+    quote_alt <- if (quote == "double") "simple" else "double"
+    warning(
+      "aucun format (de type caractere) dans sas_pgm : ",
+      "essayer `quote = \"", quote_alt, "\"` ?")
   }
 
   fmtnames <- values[ , 2]
