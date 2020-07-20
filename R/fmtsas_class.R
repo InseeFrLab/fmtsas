@@ -81,3 +81,16 @@ other.fmtsas <- function(x) attr(x, "other")
   x
 
 }
+
+
+# print -------------------------------------------------------------------
+
+print.fmtsas_c <- function(x, ...) {
+
+  cat("# a character `fmtsas` object\n")
+  print.default(c(x)) # c() pour supprimer les attributs (hors noms)
+  if (!is.null(other(x))) {
+    cat("[other] \"", other(x), "\"", sep = "")
+  }
+
+}
