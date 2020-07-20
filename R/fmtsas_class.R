@@ -85,6 +85,8 @@ other.fmtsas <- function(x) attr(x, "other")
 
 # print -------------------------------------------------------------------
 
+#' @export
+
 print.fmtsas_c <- function(x, ...) {
 
   cat("# a character `fmtsas` object\n")

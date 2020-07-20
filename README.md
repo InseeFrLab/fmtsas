@@ -66,18 +66,14 @@ conv_t <- from_tab(format_data)
 
 conv_t
 #> $fmt1_
+#> # a character `fmtsas` object
 #>    A    B    C 
 #>  "A" "BC" "BC" 
-#> attr(,"other")
-#> [1] "ERROR"
-#> attr(,"class")
-#> [1] "fmtsas_c" "fmtsas"  
-#> 
+#> [other] "ERROR"
 #> $sexe
+#> # a character `fmtsas` object
 #>       1       2 
-#> "Homme" "Femme" 
-#> attr(,"class")
-#> [1] "fmtsas_c" "fmtsas"
+#> "Homme" "Femme"
 ```
 
 [Documentation détaillée de la
@@ -110,22 +106,19 @@ conv_p <- from_pgm(test_pgm)
 
 conv_p
 #> $sexe
+#> # a character `fmtsas` object
 #>       1       2 
 #> "Homme" "Femme" 
-#> attr(,"class")
-#> [1] "fmtsas_c" "fmtsas"  
 #> 
 #> $rega
+#> # a character `fmtsas` object
 #>          01          02          03          04          06          11 
 #> "Outre-mer" "Outre-mer" "Outre-mer" "Outre-mer" "Outre-mer" "Métropole" 
 #>          24          27          28          32          44          52 
 #> "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" 
 #>          53          75          76          84          93          94 
 #> "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" 
-#> attr(,"other")
-#> [1] "ERREUR"
-#> attr(,"class")
-#> [1] "fmtsas_c" "fmtsas"
+#> [other] "ERREUR"
 ```
 
 [Documentation détaillée de la
