@@ -40,8 +40,7 @@ colonne \code{START}.
 
 La modalité SAS \code{other} (valeur par défaut), présente dans la table si une
 colonne \code{HLO} existe et vaut \code{"O"}, est sauvegardée dans l'attribut
-"other" pour chaque élément de la liste. Si le format SAS n'a pas de valeur
-par défaut, l'attribut est quand même présent avec la valeur \code{NA}.
+"other" pour les éléments de la liste concernés.
 }
 \examples{
 # donnees en entree (provenant d'une table SAS)
