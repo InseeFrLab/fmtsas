@@ -43,7 +43,8 @@ colonne \code{HLO} existe et vaut \code{"O"}, est sauvegardée dans l'attribut
 "other" pour les éléments de la liste concernés.
 }
 \examples{
-# donnees en entree (provenant d'une table SAS)
+## Donnees en entree (provenant d'une table SAS) :
+
 format_data <-
   data.frame(
     FMTNAME = c( "fmt1_", "fmt1_", "fmt1_", "fmt1_",  "sexe",  "sexe"),
@@ -53,9 +54,12 @@ format_data <-
     HLO     = c(      NA,      NA,      NA,     "O",      NA,      NA)
   )
 
-conv <- from_tab(format_data)
+## Conversion des formats :
 
-# Utilisation :
+conv <- from_tab(format_data)
+conv
+
+## Utilisation :
 
 # soit un jeu de donnees contenant des codes a convertir en libelles
 donnees <-

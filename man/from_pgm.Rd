@@ -66,14 +66,20 @@ La modalité SAS \code{other} (valeur par défaut) est sauvegardée dans l'attri
 par défaut, l'attribut n'est pas présent.
 }
 \examples{
+## Import d'un programme SAS :
+
 test_pgm <- readLines(
   system.file("extdata/pgm_format_test.sas", package = "fmtsas"),
   encoding = "UTF-8"
 )
 cat(test_pgm, sep = "\n")
-conv <- from_pgm(test_pgm)
 
-# Utilisation :
+## Conversion des formats :
+
+conv <- from_pgm(test_pgm)
+conv
+
+## Utilisation :
 
 # soit un jeu de donnees contenant des codes a convertir en libelles
 donnees <-

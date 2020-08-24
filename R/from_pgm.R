@@ -138,14 +138,20 @@ value_to_vect <- function(value_txt) {
 #' @seealso [from_tab] pour importer les formats contenus dans une table SAS.
 #'
 #' @examples
+#' ## Import d'un programme SAS :
+#'
 #' test_pgm <- readLines(
 #'   system.file("extdata/pgm_format_test.sas", package = "fmtsas"),
 #'   encoding = "UTF-8"
 #' )
 #' cat(test_pgm, sep = "\n")
-#' conv <- from_pgm(test_pgm)
 #'
-#' # Utilisation :
+#' ## Conversion des formats :
+#'
+#' conv <- from_pgm(test_pgm)
+#' conv
+#'
+#' ## Utilisation :
 #'
 #' # soit un jeu de donnees contenant des codes a convertir en libelles
 #' donnees <-
