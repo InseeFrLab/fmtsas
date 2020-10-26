@@ -26,6 +26,7 @@ code_coverage:
 pages:
   stage: deploy
   script:
+    - Rscript -e 'install.packages("pkgdown")'
     - Rscript -e 'pkgdown::build_site()'
   artifacts:
     paths:
