@@ -20,5 +20,5 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-URL: https://xkfzv9.pages.innovation.insee.eu/fmtsas, https://git.stable.innovation.insee.eu/xkfzv9/fmtsas
+URL: https://gitlab.insee.fr/xkfzv9/fmtsas
 BugReports: https://gitlab.insee.fr/xkfzv9/fmtsas/-/issues
