@@ -3,12 +3,12 @@
 
 <!-- badges: start -->
 [![Project Status: Work in progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![pipeline status](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/pipelines)
-[![coverage report](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/badges/master/coverage.svg)](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/commits/master)
+[![pipeline status](https://gitlab.insee.fr/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://gitlab.insee.fr/xkfzv9/fmtsas/-/pipelines)
+[![coverage report](https://gitlab.insee.fr/xkfzv9/fmtsas/badges/master/coverage.svg)](https://gitlab.insee.fr/xkfzv9/fmtsas/-/commits/master)
 [![CRAN status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
 <!-- badges: end -->
 
-![](https://git.stable.innovation.insee.eu/uploads/-/system/project/avatar/3136/visuel_fmt_sas.png?width=64)
+![](https://gitlab.insee.fr/uploads/-/system/project/avatar/1134/visuel_fmt_sas.png?width=64)
 
 # fmtsas
 
@@ -24,20 +24,26 @@ comportant un nombre défini de modalités.*
 
 ## Installation
 
-Pour installer le package sur un poste Insee ou sur AUS :
+  - **version stable la plus récente** (recommandé)
+
+<!-- end list -->
 
 ``` r
-# install.packages("remotes", type = "source")
-remotes::install_gitlab(
-  repo    = "xkfzv9/fmtsas",
-  host    = "git.stable.innovation.insee.eu",
-  upgrade = "never",
-  build   = FALSE
-)
+install.packages("fmtsas", repos = "https://nexus.insee.fr/repository/r-public")
 ```
 
-(sur AUS, il est possible qu’il faille répéter cette opération plusieurs
-fois)
+  - **version de développement**
+
+<!-- end list -->
+
+``` r
+# install.packages("remotes")
+remotes::install_gitlab(
+  repo    = "xkfzv9/fmtsas",
+  host    = "gitlab.insee.fr",
+  upgrade = "never"
+)
+```
 
 ## Chargement
 
@@ -77,7 +83,7 @@ conv_t
 ```
 
 [Documentation détaillée de la
-fonction](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/from_tab.html).
+fonction](https://xkfzv9.gitlab-pages.insee.fr/fmtsas/reference/from_tab.html).
 <!-- lien en dur, trouver un moyen de rendre cela portable -->
 
 ### Depuis un programme : `from_pgm`
@@ -122,7 +128,7 @@ conv_p
 ```
 
 [Documentation détaillée de la
-fonction](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/from_pgm.html).
+fonction](https://xkfzv9.gitlab-pages.insee.fr/fmtsas/reference/from_pgm.html).
 <!-- lien en dur, trouver un moyen de rendre cela portable -->
 
 ## Utilisation après import
@@ -138,7 +144,7 @@ de vecteurs :
   - chaque élément a un éventuel attribut `"other"` ;
   - chaque élément est un objet de type `fmtsas_c`, ce qui permet
     notamment d’utiliser
-    [`[]`](http://xkfzv9.pages.innovation.insee.eu/fmtsas/reference/extract.fmtsas_c.html)
+    [`[]`](https://xkfzv9.gitlab-pages.insee.fr/fmtsas/reference/extract.fmtsas_c.html)
     avec prise en compte des valeurs par défaut (`other`). Cf. infra
     pour plus de détails sur cet opérateur.
 
@@ -218,10 +224,10 @@ quelques éventuels ajustements).
 
 Package en cours de développement.
 
-[Contribuez](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas),
+[Contribuez](https://xkfzv9.gitlab-pages.insee.fr/xkfzv9/fmtsas),
 notamment en signalant des bugs ou des cas où le package ne fonctionne
 pas correctement (de préference
-[ici](https://git.stable.innovation.insee.eu/xkfzv9/fmtsas/issues)).
+[ici](https://gitlab.insee.fr/xkfzv9/fmtsas/-/issues)).
 
 Idées pour la suite :
 
