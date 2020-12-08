@@ -1,7 +1,7 @@
 Package: fmtsas
 Type: Package
 Title: Import SAS Formats
-Version: 0.1.1
+Version: 0.1.1.9000
 Imports: stringr
 Suggests: testthat
 Authors@R:
