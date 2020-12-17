@@ -3,8 +3,8 @@
 
 <!-- badges: start -->
 [![Project Status: Work in progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![pipeline status](https://gitlab.insee.fr/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://gitlab.insee.fr/xkfzv9/fmtsas/-/pipelines)
-[![coverage report](https://gitlab.insee.fr/xkfzv9/fmtsas/badges/master/coverage.svg)](https://gitlab.insee.fr/xkfzv9/fmtsas/-/commits/master)
+[![pipeline status](https://gitlab.insee.fr/py_b/fmtsas/badges/master/pipeline.svg)](https://gitlab.insee.fr/py_b/fmtsas/-/pipelines)
+[![coverage report](https://gitlab.insee.fr/py_b/fmtsas/badges/master/coverage.svg)](https://gitlab.insee.fr/py_b/fmtsas/-/commits/master)
 [![CRAN status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
 <!-- badges: end -->
 
@@ -39,7 +39,7 @@ install.packages("fmtsas", repos = "https://nexus.insee.fr/repository/r-public")
 ``` r
 # install.packages("remotes")
 remotes::install_gitlab(
-  repo    = "xkfzv9/fmtsas",
+  repo    = "py_b/fmtsas",
   host    = "gitlab.insee.fr",
   upgrade = "never"
 )
@@ -83,7 +83,7 @@ conv_t
 ```
 
 [Documentation détaillée de la
-fonction](https://xkfzv9.gitlab-pages.insee.fr/fmtsas/reference/from_tab.html).
+fonction](https://py_b.gitlab-pages.insee.fr/fmtsas/reference/from_tab.html).
 <!-- lien en dur, trouver un moyen de rendre cela portable -->
 
 ### Depuis un programme : `from_pgm`
@@ -128,7 +128,7 @@ conv_p
 ```
 
 [Documentation détaillée de la
-fonction](https://xkfzv9.gitlab-pages.insee.fr/fmtsas/reference/from_pgm.html).
+fonction](https://py_b.gitlab-pages.insee.fr/fmtsas/reference/from_pgm.html).
 <!-- lien en dur, trouver un moyen de rendre cela portable -->
 
 ## Utilisation après import
@@ -144,7 +144,7 @@ de vecteurs :
   - chaque élément a un éventuel attribut `"other"` ;
   - chaque élément est un objet de type `fmtsas_c`, ce qui permet
     notamment d’utiliser
-    [`[]`](https://xkfzv9.gitlab-pages.insee.fr/fmtsas/reference/extract.fmtsas_c.html)
+    [`[]`](https://py_b.gitlab-pages.insee.fr/fmtsas/reference/extract.fmtsas_c.html)
     avec prise en compte des valeurs par défaut (`other`). Cf. infra
     pour plus de détails sur cet opérateur.
 
@@ -224,10 +224,10 @@ quelques éventuels ajustements).
 
 Package en cours de développement.
 
-[Contribuez](https://xkfzv9.gitlab-pages.insee.fr/xkfzv9/fmtsas),
+[Contribuez](https://py_b.gitlab-pages.insee.fr/py_b/fmtsas),
 notamment en signalant des bugs ou des cas où le package ne fonctionne
 pas correctement (de préference
-[ici](https://gitlab.insee.fr/xkfzv9/fmtsas/-/issues)).
+[ici](https://gitlab.insee.fr/py_b/fmtsas/-/issues)).
 
 Idées pour la suite :
 
