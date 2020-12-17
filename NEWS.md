@@ -4,6 +4,12 @@ subtitle: Historique des modifications
 output: rmarkdown::html_vignette
 ---
 
+## fmtsas 0.1.2
+
+[12/2020]
+
+* modification username gitlab
+
 ## fmtsas 0.1.1
 
 [12/2020]
