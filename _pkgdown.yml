@@ -3,7 +3,7 @@ destination: public
 navbar:
   right:
    - text: Contribuer
-     href: https://gitlab.insee.fr/xkfzv9/fmtsas
+     href: https://gitlab.insee.fr/py_b/fmtsas
      icon: fa-gitlab
 
 reference:
