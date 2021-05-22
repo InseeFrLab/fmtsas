@@ -7,8 +7,7 @@
 language](https://img.shields.io/github/languages/top/InseeFrLab/fmtsas)
 [![R check
 status](https://github.com/InseeFrLab/fmtsas/workflows/R-CMD-check/badge.svg)](https://github.com/InseeFrLab/fmtsas/actions/workflows/check-release.yaml)
-[![Codecov test
-coverage](https://codecov.io/gh/InseeFrLab/fmtsas/branch/master/graph/badge.svg)](https://codecov.io/gh/InseeFrLab/fmtsas?branch=master)
+[![codecov](https://codecov.io/gh/InseeFrLab/fmtsas/branch/master/graph/badge.svg?token=25MHI8O62M)](https://codecov.io/gh/InseeFrLab/fmtsas)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
 [![Lifecycle:
