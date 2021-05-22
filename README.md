@@ -5,12 +5,14 @@
 
 ![GitHub top
 language](https://img.shields.io/github/languages/top/InseeFrLab/fmtsas)
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R check
 status](https://github.com/InseeFrLab/fmtsas/workflows/R-CMD-check/badge.svg)](https://github.com/InseeFrLab/fmtsas/actions/workflows/check-release.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/InseeFrLab/fmtsas/branch/master/graph/badge.svg)](https://codecov.io/gh/InseeFrLab/fmtsas?branch=master)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 <!-- ![](https://gitlab.insee.fr/uploads/-/system/project/avatar/1134/visuel_fmt_sas.png?width=64) -->
