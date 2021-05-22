@@ -6,6 +6,7 @@ output: github_document
 
 <!-- badges: start -->
 [![Project Status: Work in progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![R build status](https://github.com/InseeFrLab/fmtsas/workflows/R-CMD-check/badge.svg)](https://github.com/InseeFrLab/fmtsas/actions)
 [![pipeline status](https://gitlab.insee.fr/xkfzv9/fmtsas/badges/master/pipeline.svg)](https://gitlab.insee.fr/xkfzv9/fmtsas/-/pipelines)
 [![coverage report](https://gitlab.insee.fr/xkfzv9/fmtsas/badges/master/coverage.svg)](https://gitlab.insee.fr/xkfzv9/fmtsas/-/commits/master)
 [![CRAN status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
