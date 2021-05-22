@@ -75,7 +75,7 @@
   <div class="contents col-md-9">
 
 
-<p><img src="https://gitlab.insee.fr/uploads/-/system/project/avatar/1134/visuel_fmt_sas.png?width=64"></p>
+<!-- ![](https://gitlab.insee.fr/uploads/-/system/project/avatar/1134/visuel_fmt_sas.png?width=64) -->
 <div id="fmtsas" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#fmtsas" class="anchor"></a>fmtsas</h1></div>
@@ -85,27 +85,14 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<ul>
-<li>
-<strong>version stable la plus récente</strong> (recommandé)</li>
-</ul>
-<!-- end list --><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"fmtsas"</span>, repos <span class="op">=</span> <span class="st">"https://nexus.insee.fr/repository/r-public"</span><span class="op">)</span></code></pre></div>
-<ul>
-<li><strong>version de développement</strong></li>
-</ul>
-<!-- end list --><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_gitlab.html">install_gitlab</a></span><span class="op">(</span>
-  repo    <span class="op">=</span> <span class="st">"py_b/fmtsas"</span>,
-  host    <span class="op">=</span> <span class="st">"gitlab.insee.fr"</span>,
-  upgrade <span class="op">=</span> <span class="st">"never"</span>
-<span class="op">)</span></code></pre></div>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"InseeFrLab/fmtsas"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="chargement" class="section level2">
 <h2 class="hasAnchor">
 <a href="#chargement" class="anchor"></a>Chargement</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://py_b.gitlab-pages.insee.fr/fmtsas">fmtsas</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="exemples-dimport-des-données" class="section level2">
@@ -116,7 +103,7 @@
 <a href="#depuis-une-table--from_tab" class="anchor"></a>Depuis une table : <code>from_tab</code>
 </h3>
 <p>En entrée un data.frame qui proviendra typiquement d’une table SAS servant dans une <code>proc format</code> avec l’option <code>CNTLIN=</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">format_data</span> <span class="op">&lt;-</span> 
   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
     FMTNAME <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="st">"fmt1_"</span>, <span class="st">"fmt1_"</span>, <span class="st">"fmt1_"</span>, <span class="st">"fmt1_"</span>,  <span class="st">"sexe"</span>,  <span class="st">"sexe"</span><span class="op">)</span>,
@@ -138,14 +125,13 @@
 <span class="co">#&gt; # a character `fmtsas` object</span>
 <span class="co">#&gt;       1       2 </span>
 <span class="co">#&gt; "Homme" "Femme"</span></code></pre></div>
-<p><a href="https://py_b.gitlab-pages.insee.fr/fmtsas/reference/from_tab.html">Documentation détaillée de la fonction</a>. <!-- lien en dur, trouver un moyen de rendre cela portable --></p>
 </div>
 <div id="depuis-un-programme--from_pgm" class="section level3">
 <h3 class="hasAnchor">
 <a href="#depuis-un-programme--from_pgm" class="anchor"></a>Depuis un programme : <code>from_pgm</code>
 </h3>
 <p>En entrée un programme SAS contenant une ou plusieurs <code>proc format</code> avec <code>value(s)</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">test_pgm</span> <span class="op">&lt;-</span>
   <span class="st">'PROC FORMAT;
      VALUE $ sexe "1"="Homme" "2"="Femme" ;
@@ -179,7 +165,6 @@
 <span class="co">#&gt;          53          75          76          84          93          94 </span>
 <span class="co">#&gt; "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" "Métropole" </span>
 <span class="co">#&gt; [other] "ERREUR"</span></code></pre></div>
-<p><a href="https://py_b.gitlab-pages.insee.fr/fmtsas/reference/from_pgm.html">Documentation détaillée de la fonction</a>. <!-- lien en dur, trouver un moyen de rendre cela portable --></p>
 </div>
 </div>
 <div id="utilisation-après-import" class="section level2">
@@ -193,14 +178,14 @@
 <li>les noms de la liste correspondent aux noms des formats SAS ;</li>
 <li>les éléments de la liste sont des vecteurs contenant les relations entre valeurs initiales et valeurs converties ;</li>
 <li>chaque élément a un éventuel attribut <code>"other"</code> ;</li>
-<li>chaque élément est un objet de type <code>fmtsas_c</code>, ce qui permet notamment d’utiliser <a href="https://py_b.gitlab-pages.insee.fr/fmtsas/reference/extract.fmtsas_c.html"><code>[]</code></a> avec prise en compte des valeurs par défaut (<code>other</code>). Cf. infra pour plus de détails sur cet opérateur.</li>
+<li>chaque élément est un objet de type <code>fmtsas_c</code>, ce qui permet notamment d’utiliser <code>[]</code> avec prise en compte des valeurs par défaut (<code>other</code>). Cf. infra pour plus de détails sur cet opérateur.</li>
 </ul>
 </div>
 <div id="exemple-dutilisation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#exemple-dutilisation" class="anchor"></a>Exemple d’utilisation</h3>
 <p>Par exemple, si l’on a un jeu de données avec des codes pour lesquels on souhaite avoir une correspondance en clair et/ou une agrégation.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">donnees</span> <span class="op">&lt;-</span>
   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
     ID   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"001"</span>, <span class="st">"002"</span>, <span class="st">"003"</span>, <span class="st">"004"</span>, <span class="st">"005"</span><span class="op">)</span>,
@@ -208,7 +193,7 @@
     REG  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="st">"04"</span>,  <span class="st">"11"</span>,  <span class="st">"##"</span>,    <span class="cn">NA</span>,  <span class="st">"24"</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
 <p>On utilise les listes générées par les fonctions <code>from_*</code> et l’opérateur <code>[]</code> pour objet “fmtsas” :</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">donnees</span><span class="op">$</span><span class="va">SEXE_LIB</span> <span class="op">&lt;-</span> <span class="va">conv_t</span><span class="op">$</span><span class="va">sexe</span><span class="op">[</span><span class="va">donnees</span><span class="op">$</span><span class="va">SEXE</span><span class="op">]</span>
 <span class="va">donnees</span><span class="op">$</span><span class="va">REG2</span> <span class="op">&lt;-</span> <span class="va">conv_p</span><span class="op">$</span><span class="va">rega</span><span class="op">[</span><span class="va">donnees</span><span class="op">$</span><span class="va">REG</span><span class="op">]</span>
 
@@ -233,7 +218,7 @@
 <h3 class="hasAnchor">
 <a href="#conversion-de-code-sas" class="anchor"></a>Conversion de code SAS</h3>
 <p>Le package offre également la possibilité de rechercher dans un programme SAS les instructions qui créent des variables à partir de formats (de la forme <code>NEW = put(OLD, $var.);</code>), pour générer le code R correspondant :</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pgm_sas</span> <span class="op">&lt;-</span>
   <span class="st">"data t2 ; set t1 ;
      SEXE_LIB = put(SEXE, $sexe.) ;
@@ -250,17 +235,6 @@
 <span class="co">#&gt; &lt;donnees&gt;$REG2 &lt;- conv_p$rega[&lt;donnees&gt;$REG]</span></code></pre></div>
 <p>Il ne reste plus qu’à copier ces instructions dans un programme R (après quelques éventuels ajustements).</p>
 </div>
-</div>
-<div id="améliorations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#am%C3%A9liorations" class="anchor"></a>Améliorations</h2>
-<p>Package en cours de développement.</p>
-<p><a href="https://py_b.gitlab-pages.insee.fr/py_b/fmtsas">Contribuez</a>, notamment en signalant des bugs ou des cas où le package ne fonctionne pas correctement (de préference <a href="https://gitlab.insee.fr/py_b/fmtsas/-/issues">ici</a>).</p>
-<p>Idées pour la suite :</p>
-<ul>
-<li>gestion des formats numériques</li>
-<li>traduction et soumission CRAN</li>
-</ul>
 </div>
 </div>
 
@@ -293,9 +267,8 @@
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.repostatus.org/#wip"><img src="https://www.repostatus.org/badges/latest/wip.svg" alt="Project Status: Work in progress"></a></li>
-<li><a href="https://gitlab.insee.fr/py_b/fmtsas/-/pipelines"><img src="https://gitlab.insee.fr/py_b/fmtsas/badges/master/pipeline.svg" alt="pipeline status"></a></li>
-<li><a href="https://gitlab.insee.fr/py_b/fmtsas/-/commits/master"><img src="https://gitlab.insee.fr/py_b/fmtsas/badges/master/coverage.svg" alt="coverage report"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://github.com/InseeFrLab/fmtsas/actions"><img src="https://github.com/InseeFrLab/fmtsas/workflows/R-CMD-check/badge.svg" alt="R check status"></a></li>
 <li><a href="https://cran.r-project.org/package=fmtsas"><img src="https://www.r-pkg.org/badges/version/fmtsas" alt="CRAN status"></a></li>
 </ul>
 </div>
