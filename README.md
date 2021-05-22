@@ -8,7 +8,7 @@ language](https://img.shields.io/github/languages/top/InseeFrLab/fmtsas)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![R check
-status](https://github.com/InseeFrLab/fmtsas/workflows/R-CMD-check/badge.svg)](https://github.com/InseeFrLab/fmtsas/actions)
+status](https://github.com/InseeFrLab/fmtsas/workflows/R-CMD-check/badge.svg)](https://github.com/InseeFrLab/fmtsas/actions/workflows/check-release.yaml)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
 <!-- badges: end -->
