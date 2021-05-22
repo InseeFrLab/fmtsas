@@ -1,10 +1,8 @@
-destination: public
-
 navbar:
   right:
-   - text: Contribuer
-     href: https://gitlab.insee.fr/py_b/fmtsas
-     icon: fa-gitlab
+    - text: Contribuer
+      icon: fab fa-github fa-lg
+      href: https://github.com/InseeFrLab/fmtsas
 
 reference:
   - title: Import depuis données SAS
