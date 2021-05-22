@@ -2,13 +2,18 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
-[![Project Status: Work in progress](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
-[![pipeline status](https://gitlab.insee.fr/py_b/fmtsas/badges/master/pipeline.svg)](https://gitlab.insee.fr/py_b/fmtsas/-/pipelines)
-[![coverage report](https://gitlab.insee.fr/py_b/fmtsas/badges/master/coverage.svg)](https://gitlab.insee.fr/py_b/fmtsas/-/commits/master)
-[![CRAN status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
+
+![GitHub top
+language](https://img.shields.io/github/languages/top/InseeFrLab/fmtsas)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![R check
+status](https://github.com/InseeFrLab/fmtsas/workflows/R-CMD-check/badge.svg)](https://github.com/InseeFrLab/fmtsas/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/fmtsas)](https://cran.r-project.org/package=fmtsas)
 <!-- badges: end -->
 
-![](https://gitlab.insee.fr/uploads/-/system/project/avatar/1134/visuel_fmt_sas.png?width=64)
+<!-- ![](https://gitlab.insee.fr/uploads/-/system/project/avatar/1134/visuel_fmt_sas.png?width=64) -->
 
 # fmtsas
 
@@ -24,25 +29,9 @@ comportant un nombre défini de modalités.*
 
 ## Installation
 
-  - **version stable la plus récente** (recommandé)
-
-<!-- end list -->
-
-``` r
-install.packages("fmtsas", repos = "https://nexus.insee.fr/repository/r-public")
-```
-
-  - **version de développement**
-
-<!-- end list -->
-
 ``` r
 # install.packages("remotes")
-remotes::install_gitlab(
-  repo    = "py_b/fmtsas",
-  host    = "gitlab.insee.fr",
-  upgrade = "never"
-)
+remotes::install_github("InseeFrLab/fmtsas")
 ```
 
 ## Chargement
@@ -81,10 +70,6 @@ conv_t
 #>       1       2 
 #> "Homme" "Femme"
 ```
-
-[Documentation détaillée de la
-fonction](https://py_b.gitlab-pages.insee.fr/fmtsas/reference/from_tab.html).
-<!-- lien en dur, trouver un moyen de rendre cela portable -->
 
 ### Depuis un programme : `from_pgm`
 
@@ -127,10 +112,6 @@ conv_p
 #> [other] "ERREUR"
 ```
 
-[Documentation détaillée de la
-fonction](https://py_b.gitlab-pages.insee.fr/fmtsas/reference/from_pgm.html).
-<!-- lien en dur, trouver un moyen de rendre cela portable -->
-
 ## Utilisation après import
 
 ### Format de l’objet
@@ -143,10 +124,8 @@ de vecteurs :
     entre valeurs initiales et valeurs converties ;
   - chaque élément a un éventuel attribut `"other"` ;
   - chaque élément est un objet de type `fmtsas_c`, ce qui permet
-    notamment d’utiliser
-    [`[]`](https://py_b.gitlab-pages.insee.fr/fmtsas/reference/extract.fmtsas_c.html)
-    avec prise en compte des valeurs par défaut (`other`). Cf. infra
-    pour plus de détails sur cet opérateur.
+    notamment d’utiliser `[]` avec prise en compte des valeurs par
+    défaut (`other`). Cf. infra pour plus de détails sur cet opérateur.
 
 ### Exemple d’utilisation
 
@@ -219,17 +198,3 @@ convert_put(pgm_sas, fmt_list = "conv_p", style = "base")
 
 Il ne reste plus qu’à copier ces instructions dans un programme R (après
 quelques éventuels ajustements).
-
-## Améliorations
-
-Package en cours de développement.
-
-[Contribuez](https://py_b.gitlab-pages.insee.fr/py_b/fmtsas),
-notamment en signalant des bugs ou des cas où le package ne fonctionne
-pas correctement (de préference
-[ici](https://gitlab.insee.fr/py_b/fmtsas/-/issues)).
-
-Idées pour la suite :
-
-  - gestion des formats numériques
-  - traduction et soumission CRAN
