@@ -4,6 +4,12 @@ subtitle: Historique des modifications
 output: rmarkdown::html_vignette
 ---
 
+## fmtsas 0.1.3
+
+[06/2021]
+
+* migration sur github InseeFrLab
+
 ## fmtsas 0.1.2
 
 [12/2020]
