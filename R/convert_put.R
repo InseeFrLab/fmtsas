@@ -55,7 +55,7 @@ stylise <- function(x, fmt_list, keep_na, style) {
 #'
 #' La fonction recherche le motif ci-dessus quel que soit l'endroit où il
 #' apparaît dans le programme, hormis dans un commentaire. Les espaces et sauts
-#' de lignes sont sont sans importance dans la détection des instructions.
+#' de lignes sont sans importance dans la détection des instructions.
 #'
 #' Deux styles sont possibles pour le code R généré :
 #'
