@@ -99,7 +99,7 @@ value_to_vect <- function(value_txt) {
 #' signe `=`. En revanche, les intervalles de caractères (type `"A"-"Z"`) ne
 #' sont pas gérés car ils contiennent un nombre indéfini de modalités possibles.
 #' Les bornes de l'intervalle seront toutefois prises en compte (comme si
-#' `"A","Z"` était écrit). La syntaxe sans les guillements (`A-Z`), également
+#' `"A","Z"` était écrit). La syntaxe sans les guillemets (`A-Z`), également
 #' permise par SAS, n'est **pas prise en compte** et ces intervalles seront
 #' ignorés.
 #'

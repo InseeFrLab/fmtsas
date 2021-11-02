@@ -53,7 +53,7 @@ La fonction détecte plusieurs valeurs séparées par des virgules à gauche du
 signe \code{=}. En revanche, les intervalles de caractères (type \code{"A"-"Z"}) ne
 sont pas gérés car ils contiennent un nombre indéfini de modalités possibles.
 Les bornes de l'intervalle seront toutefois prises en compte (comme si
-\verb{"A","Z"} était écrit). La syntaxe sans les guillements (\code{A-Z}), également
+\verb{"A","Z"} était écrit). La syntaxe sans les guillemets (\code{A-Z}), également
 permise par SAS, n'est \strong{pas prise en compte} et ces intervalles seront
 ignorés.
 
