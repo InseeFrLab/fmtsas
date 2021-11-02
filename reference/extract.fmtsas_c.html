@@ -163,13 +163,15 @@ caractère ;</p></li>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># construit un objet fmtsas_c</span>
-<span class='va'>conv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='fmtsas_c.html'>fmtsas_c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span> <span class='op'>=</span> <span class='st'>"LIB_A"</span>, <span class='st'>"B"</span> <span class='op'>=</span> <span class='st'>"LIB_B"</span><span class='op'>)</span>, other <span class='op'>=</span> <span class='st'>"?"</span><span class='op'>)</span>
-
-<span class='co'># effectue une conversion</span>
-<span class='va'>conv</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='cn'>NA</span><span class='op'>)</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; [1] "LIB_A" "LIB_A" "LIB_B" "?"     "?"    </div><div class='input'><span class='va'>conv</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='cn'>NA</span><span class='op'>)</span>, keep_na <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; [1] "LIB_A" "LIB_A" "LIB_B" "?"     NA     </div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'># construit un objet fmtsas_c</span></span>
+<span class='r-in'><span class='va'>conv</span> <span class='op'>&lt;-</span> <span class='fu'><a href='fmtsas_c.html'>fmtsas_c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span> <span class='op'>=</span> <span class='st'>"LIB_A"</span>, <span class='st'>"B"</span> <span class='op'>=</span> <span class='st'>"LIB_B"</span><span class='op'>)</span>, other <span class='op'>=</span> <span class='st'>"?"</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># effectue une conversion</span></span>
+<span class='r-in'><span class='va'>conv</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='cn'>NA</span><span class='op'>)</span><span class='op'>]</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "LIB_A" "LIB_A" "LIB_B" "?"     "?"    </span>
+<span class='r-in'><span class='va'>conv</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>, <span class='cn'>NA</span><span class='op'>)</span>, keep_na <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] "LIB_A" "LIB_A" "LIB_B" "?"     NA     </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

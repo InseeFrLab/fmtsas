@@ -173,10 +173,10 @@ espaces et sauts de lignes surnuméraires sont autorisés. La casse du code SAS
 (majuscule ou minuscule) est sans importance. Le programme peut en outre
 contenir autre chose que des <code>proc format</code>.</p>
 <p>La fonction détecte plusieurs valeurs séparées par des virgules à gauche du
-signe <code><a href='https://rdrr.io/r/base/assignOps.html'>=</a></code>. En revanche, les intervalles de caractères (type <code>"A"-"Z"</code>) ne
+signe <code>=</code>. En revanche, les intervalles de caractères (type <code>"A"-"Z"</code>) ne
 sont pas gérés car ils contiennent un nombre indéfini de modalités possibles.
 Les bornes de l'intervalle seront toutefois prises en compte (comme si
-<code>"A","Z"</code> était écrit). La syntaxe sans les guillements (<code>A-Z</code>), également
+<code>"A","Z"</code> était écrit). La syntaxe sans les guillemets (<code>A-Z</code>), également
 permise par SAS, n'est <strong>pas prise en compte</strong> et ces intervalles seront
 ignorés.</p>
 <p>Il est possible de choisir le type de guillemets (double ou simple) entourant
@@ -190,145 +190,148 @@ par défaut, l'attribut n'est pas présent.</p>
     <div class='dont-index'><p><a href='from_tab.html'>from_tab</a> pour importer les formats contenus dans une table SAS.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Import d'un programme SAS :</span>
-
-<span class='va'>test_pgm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata/pgm_format_test.sas"</span>, package <span class='op'>=</span> <span class='st'>"fmtsas"</span><span class='op'>)</span>,
-  encoding <span class='op'>=</span> <span class='st'>"UTF-8"</span>
-<span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='va'>test_pgm</span>, sep <span class='op'>=</span> <span class='st'>"\n"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; proc format ;
-#&gt; 
-#&gt;   /* Noms régions */
-#&gt;   value $reg
-#&gt;   "01" = "Guadeloupe"
-#&gt;   "02" = "Martinique"
-#&gt;   "03" = "Guyane"
-#&gt;   "04" = "La Réunion"
-#&gt;   "06" = "Mayotte"
-#&gt;   "11" = "Île-de-France"
-#&gt;   "24" = "Centre-Val de Loire"
-#&gt;   "27" = "Bourgogne-Franche-Comté"
-#&gt;   "28" = "Normandie"
-#&gt;   "32" = "Hauts-de-France"
-#&gt;   "44" = "Grand Est"
-#&gt;   "52" = "Pays de la Loire"
-#&gt;   "53" = "Bretagne"
-#&gt;   "75" = "Nouvelle Aquitaine"
-#&gt;   "76" = "Occitanie"
-#&gt;   "84" = "Auvergne-Rhône-Alpes"
-#&gt;   "93" = "Provence-Alpes-Côte d'Azur"
-#&gt;   "94" = "Corse" ;
-#&gt; 
-#&gt;   /* Secteur d'activité regroupé */
-#&gt;   value $a13_
-#&gt;   "B", "C", "D", "E" = "Industrie"
-#&gt;   "F"                = "Construction"
-#&gt;   "G"                = "Commerce, réparation d'automobiles et de motocycles"
-#&gt;   "H"                = "Transports et entreposage"
-#&gt;   "I"                = "Hébergement et restauration"
-#&gt;   "J"                = "Information et communication"
-#&gt;   "K", "L"           = "Activités financières, d'assurance et immobilières"
-#&gt;   "M"                = "Activités spécialisées, scientifiques et techniques"
-#&gt;   "N"                = "Activités de services administratifs et de soutien"
-#&gt;   "P"                = "Enseignement"
-#&gt;   "Q"                = "Santé humaine et action sociale"
-#&gt;   other              = "Hors champ" ;
-#&gt; 
-#&gt; run ;
-#&gt; 
-#&gt; PROC FORMAT;VALUE $ sexe  "1"="Homme"    "2"="Femme" ;RUN;
-#&gt; 
-#&gt; data t1 ;
-#&gt;   set t2 ;
-#&gt;   GEO2 = put(REG2016, $reg.) ;
-#&gt;   A13 = put(A21, $a13_.) ;
-#&gt; run ;</div><div class='input'>
-<span class='co'>## Conversion des formats :</span>
-
-<span class='va'>conv</span> <span class='op'>&lt;-</span> <span class='fu'>from_pgm</span><span class='op'>(</span><span class='va'>test_pgm</span><span class='op'>)</span>
-<span class='va'>conv</span>
-</div><div class='output co'>#&gt; $reg
-#&gt; # a character `fmtsas` object
-#&gt;                           01                           02 
-#&gt;                 "Guadeloupe"                 "Martinique" 
-#&gt;                           03                           04 
-#&gt;                     "Guyane"                 "La Réunion" 
-#&gt;                           06                           11 
-#&gt;                    "Mayotte"              "Île-de-France" 
-#&gt;                           24                           27 
-#&gt;        "Centre-Val de Loire"    "Bourgogne-Franche-Comté" 
-#&gt;                           28                           32 
-#&gt;                  "Normandie"            "Hauts-de-France" 
-#&gt;                           44                           52 
-#&gt;                  "Grand Est"           "Pays de la Loire" 
-#&gt;                           53                           75 
-#&gt;                   "Bretagne"         "Nouvelle Aquitaine" 
-#&gt;                           76                           84 
-#&gt;                  "Occitanie"       "Auvergne-Rhône-Alpes" 
-#&gt;                           93                           94 
-#&gt; "Provence-Alpes-Côte d'Azur"                      "Corse" 
-#&gt; 
-#&gt; $a13_
-#&gt; # a character `fmtsas` object
-#&gt;                                                     B 
-#&gt;                                           "Industrie" 
-#&gt;                                                     C 
-#&gt;                                           "Industrie" 
-#&gt;                                                     D 
-#&gt;                                           "Industrie" 
-#&gt;                                                     E 
-#&gt;                                           "Industrie" 
-#&gt;                                                     F 
-#&gt;                                        "Construction" 
-#&gt;                                                     G 
-#&gt; "Commerce, réparation d'automobiles et de motocycles" 
-#&gt;                                                     H 
-#&gt;                           "Transports et entreposage" 
-#&gt;                                                     I 
-#&gt;                         "Hébergement et restauration" 
-#&gt;                                                     J 
-#&gt;                        "Information et communication" 
-#&gt;                                                     K 
-#&gt;  "Activités financières, d'assurance et immobilières" 
-#&gt;                                                     L 
-#&gt;  "Activités financières, d'assurance et immobilières" 
-#&gt;                                                     M 
-#&gt; "Activités spécialisées, scientifiques et techniques" 
-#&gt;                                                     N 
-#&gt;  "Activités de services administratifs et de soutien" 
-#&gt;                                                     P 
-#&gt;                                        "Enseignement" 
-#&gt;                                                     Q 
-#&gt;                     "Santé humaine et action sociale" 
-#&gt; [other] "Hors champ"
-#&gt; $sexe
-#&gt; # a character `fmtsas` object
-#&gt;       1       2 
-#&gt; "Homme" "Femme" 
-#&gt; </div><div class='input'>
-<span class='co'>## Utilisation :</span>
-
-<span class='co'># soit un jeu de donnees contenant des codes a convertir en libelles</span>
-<span class='va'>donnees</span> <span class='op'>&lt;-</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
-    ACT_CODE <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"B"</span>,   <span class='cn'>NA</span>,  <span class='st'>"C"</span>,  <span class='st'>"P"</span>,  <span class='st'>"W"</span>, <span class='st'>"F"</span><span class='op'>)</span>,
-    REG_CODE <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"94"</span>, <span class='st'>"04"</span>, <span class='st'>"44"</span>, <span class='st'>"09"</span>, <span class='st'>"01"</span>,  <span class='cn'>NA</span><span class='op'>)</span>
-  <span class='op'>)</span>
-
-<span class='co'># pour remplacer les codes par les libelles (pour ACT_CODE)</span>
-<span class='va'>donnees</span><span class='op'>$</span><span class='va'>ACT_LIB</span>  <span class='op'>&lt;-</span> <span class='va'>conv</span><span class='op'>$</span><span class='va'>a13_</span><span class='op'>[</span><span class='va'>donnees</span><span class='op'>$</span><span class='va'>ACT_CODE</span><span class='op'>]</span>
-<span class='va'>donnees</span><span class='op'>$</span><span class='va'>ACT_LIB2</span> <span class='op'>&lt;-</span> <span class='va'>conv</span><span class='op'>$</span><span class='va'>a13_</span><span class='op'>[</span><span class='va'>donnees</span><span class='op'>$</span><span class='va'>ACT_CODE</span>, keep_na <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span>
-<span class='va'>donnees</span><span class='op'>$</span><span class='va'>REG_LIB</span>  <span class='op'>&lt;-</span> <span class='va'>conv</span><span class='op'>$</span><span class='va'>reg</span><span class='op'>[</span><span class='va'>donnees</span><span class='op'>$</span><span class='va'>REG_CODE</span><span class='op'>]</span>
-
-<span class='va'>donnees</span>
-</div><div class='output co'>#&gt;   ACT_CODE REG_CODE      ACT_LIB     ACT_LIB2    REG_LIB
-#&gt; 1        B       94    Industrie    Industrie      Corse
-#&gt; 2     &lt;NA&gt;       04   Hors champ         &lt;NA&gt; La Réunion
-#&gt; 3        C       44    Industrie    Industrie  Grand Est
-#&gt; 4        P       09 Enseignement Enseignement         09
-#&gt; 5        W       01   Hors champ   Hors champ Guadeloupe
-#&gt; 6        F     &lt;NA&gt; Construction Construction       &lt;NA&gt;</div></pre>
+    <pre class="examples"><span class='r-in'><span class='co'>## Import d'un programme SAS :</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>test_pgm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span><span class='op'>(</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata/pgm_format_test.sas"</span>, package <span class='op'>=</span> <span class='st'>"fmtsas"</span><span class='op'>)</span>,</span>
+<span class='r-in'>  encoding <span class='op'>=</span> <span class='st'>"UTF-8"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='va'>test_pgm</span>, sep <span class='op'>=</span> <span class='st'>"\n"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> proc format ;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   /* Noms régions */</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   value $reg</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "01" = "Guadeloupe"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "02" = "Martinique"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "03" = "Guyane"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "04" = "La Réunion"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "06" = "Mayotte"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "11" = "Île-de-France"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "24" = "Centre-Val de Loire"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "27" = "Bourgogne-Franche-Comté"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "28" = "Normandie"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "32" = "Hauts-de-France"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "44" = "Grand Est"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "52" = "Pays de la Loire"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "53" = "Bretagne"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "75" = "Nouvelle Aquitaine"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "76" = "Occitanie"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "84" = "Auvergne-Rhône-Alpes"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "93" = "Provence-Alpes-Côte d'Azur"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "94" = "Corse" ;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   /* Secteur d'activité regroupé */</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   value $a13_</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "B", "C", "D", "E" = "Industrie"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "F"                = "Construction"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "G"                = "Commerce, réparation d'automobiles et de motocycles"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "H"                = "Transports et entreposage"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "I"                = "Hébergement et restauration"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "J"                = "Information et communication"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "K", "L"           = "Activités financières, d'assurance et immobilières"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "M"                = "Activités spécialisées, scientifiques et techniques"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "N"                = "Activités de services administratifs et de soutien"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "P"                = "Enseignement"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   "Q"                = "Santé humaine et action sociale"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   other              = "Hors champ" ;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> run ;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PROC FORMAT;VALUE $ sexe  "1"="Homme"    "2"="Femme" ;RUN;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data t1 ;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   set t2 ;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   GEO2 = put(REG2016, $reg.) ;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   A13 = put(A21, $a13_.) ;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> run ;</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Conversion des formats :</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>conv</span> <span class='op'>&lt;-</span> <span class='fu'>from_pgm</span><span class='op'>(</span><span class='va'>test_pgm</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>conv</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $reg</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> # a character `fmtsas` object</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           01                           02 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 "Guadeloupe"                 "Martinique" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           03                           04 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     "Guyane"                 "La Réunion" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           06                           11 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                    "Mayotte"              "Île-de-France" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           24                           27 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>        "Centre-Val de Loire"    "Bourgogne-Franche-Comté" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           28                           32 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                  "Normandie"            "Hauts-de-France" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           44                           52 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                  "Grand Est"           "Pays de la Loire" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           53                           75 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                   "Bretagne"         "Nouvelle Aquitaine" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           76                           84 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                  "Occitanie"       "Auvergne-Rhône-Alpes" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           93                           94 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> "Provence-Alpes-Côte d'Azur"                      "Corse" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $a13_</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> # a character `fmtsas` object</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     B </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                           "Industrie" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     C </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                           "Industrie" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     D </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                           "Industrie" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     E </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                           "Industrie" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     F </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                        "Construction" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     G </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> "Commerce, réparation d'automobiles et de motocycles" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     H </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                           "Transports et entreposage" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     I </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                         "Hébergement et restauration" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     J </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                        "Information et communication" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     K </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  "Activités financières, d'assurance et immobilières" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     L </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  "Activités financières, d'assurance et immobilières" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     M </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> "Activités spécialisées, scientifiques et techniques" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     N </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  "Activités de services administratifs et de soutien" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     P </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                        "Enseignement" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                                     Q </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     "Santé humaine et action sociale" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [other] "Hors champ"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> $sexe</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> # a character `fmtsas` object</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       1       2 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> "Homme" "Femme" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'>## Utilisation :</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># soit un jeu de donnees contenant des codes a convertir en libelles</span></span>
+<span class='r-in'><span class='va'>donnees</span> <span class='op'>&lt;-</span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span></span>
+<span class='r-in'>    ACT_CODE <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span> <span class='st'>"B"</span>,   <span class='cn'>NA</span>,  <span class='st'>"C"</span>,  <span class='st'>"P"</span>,  <span class='st'>"W"</span>, <span class='st'>"F"</span><span class='op'>)</span>,</span>
+<span class='r-in'>    REG_CODE <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"94"</span>, <span class='st'>"04"</span>, <span class='st'>"44"</span>, <span class='st'>"09"</span>, <span class='st'>"01"</span>,  <span class='cn'>NA</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># pour remplacer les codes par les libelles (pour ACT_CODE)</span></span>
+<span class='r-in'><span class='va'>donnees</span><span class='op'>$</span><span class='va'>ACT_LIB</span>  <span class='op'>&lt;-</span> <span class='va'>conv</span><span class='op'>$</span><span class='va'>a13_</span><span class='op'>[</span><span class='va'>donnees</span><span class='op'>$</span><span class='va'>ACT_CODE</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>donnees</span><span class='op'>$</span><span class='va'>ACT_LIB2</span> <span class='op'>&lt;-</span> <span class='va'>conv</span><span class='op'>$</span><span class='va'>a13_</span><span class='op'>[</span><span class='va'>donnees</span><span class='op'>$</span><span class='va'>ACT_CODE</span>, keep_na <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span></span>
+<span class='r-in'><span class='va'>donnees</span><span class='op'>$</span><span class='va'>REG_LIB</span>  <span class='op'>&lt;-</span> <span class='va'>conv</span><span class='op'>$</span><span class='va'>reg</span><span class='op'>[</span><span class='va'>donnees</span><span class='op'>$</span><span class='va'>REG_CODE</span><span class='op'>]</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='va'>donnees</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ACT_CODE REG_CODE      ACT_LIB     ACT_LIB2    REG_LIB</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1        B       94    Industrie    Industrie      Corse</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2     &lt;NA&gt;       04   Hors champ         &lt;NA&gt; La Réunion</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3        C       44    Industrie    Industrie  Grand Est</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4        P       09 Enseignement Enseignement         09</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5        W       01   Hors champ   Hors champ Guadeloupe</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6        F     &lt;NA&gt; Construction Construction       &lt;NA&gt;</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

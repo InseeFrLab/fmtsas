@@ -159,14 +159,16 @@ spécifié comme un des noms d'une liste de <code>fmtsas</code>. Une telle liste
 pratique générée par <a href='from_tab.html'>from_tab</a> ou <a href='from_pgm.html'>from_pgm</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>fmtsas_c</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span> <span class='op'>=</span> <span class='st'>"LIBA"</span>, <span class='st'>"B"</span> <span class='op'>=</span> <span class='st'>"LIB_B"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; # a character `fmtsas` object
-#&gt;       A       B 
-#&gt;  "LIBA" "LIB_B" </div><div class='input'><span class='fu'>fmtsas_c</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span> <span class='op'>=</span> <span class='st'>"LIBA"</span>, <span class='st'>"B"</span> <span class='op'>=</span> <span class='st'>"LIB_B"</span><span class='op'>)</span>, other <span class='op'>=</span> <span class='st'>"??"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; # a character `fmtsas` object
-#&gt;       A       B 
-#&gt;  "LIBA" "LIB_B" 
-#&gt; [other] "??"</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'>fmtsas_c</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span> <span class='op'>=</span> <span class='st'>"LIBA"</span>, <span class='st'>"B"</span> <span class='op'>=</span> <span class='st'>"LIB_B"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> # a character `fmtsas` object</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       A       B </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  "LIBA" "LIB_B" </span>
+<span class='r-in'><span class='fu'>fmtsas_c</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span> <span class='op'>=</span> <span class='st'>"LIBA"</span>, <span class='st'>"B"</span> <span class='op'>=</span> <span class='st'>"LIB_B"</span><span class='op'>)</span>, other <span class='op'>=</span> <span class='st'>"??"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> # a character `fmtsas` object</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>       A       B </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  "LIBA" "LIB_B" </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [other] "??"</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
